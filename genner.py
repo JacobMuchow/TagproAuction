@@ -2,14 +2,24 @@ import json
 
 
 ## Edit these then run the script to generate the data you need
-captains = [('eagles.', "Capitalists", "Central"),
-			('Bull', "Cyber Ballies", "Pacific"),
+captains = [('NewCompte', "Ballis Saint-Germain", "ELTP"),
+			('DaEvil1', "Panathinaikiss", "ELTP"),
+			('Dead Nan', "TagPro Rangers", "ELTP"),
+			('Fred__', "Fred Ball Salzburg", "ELTP"),
+			('Hyponome', "Tagenham and Rektbridge", "ELTP"),
+			('Jade', "Blockburn Rovers", "ELTP"),
+			('LiddiLidd', "Ballern Munich", "ELTP"),
+			('MikeC', "Atleticap Madrid", "ELTP"),
+			('Noctiz', "Ballrussia Dortmund", "ELTP"),
+			('nub', "Rekt Ham", "ELTP"),
+			('orb', "Rolling BC", "ELTP"),
+			('TDD', "TDD team", "ELTP"),
 
 		]
 
 
 starting_money = 100
-team_size = 4
+team_size = 11
 
 keepers = False
 nominations = [{"name" : "nextInOrder", "nextorder" : 0}]
