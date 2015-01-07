@@ -345,13 +345,6 @@
 <template name="rosters">
         {{#each divisions}}
     <div class="row">
-            <div class="col-md-2">
-            <div class="divisionpanel panel panel-default">
-                <div class="panel-heading division-header" style="text-align:right; background-color:{{inRedDivision division}}">
-                {{division}} Division
-                </div>
-            </div>
-            </div>
                 {{> renderteam division=division}}
             <div class="clearfix visible-sm visible-md visible-lg"></div>
     </div>
