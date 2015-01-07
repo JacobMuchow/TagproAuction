@@ -1,4 +1,4 @@
-admins = ["eagles.", "Bull"];
+admins = ["NewCompte"];
 
 
 
