@@ -7,9 +7,9 @@ captains = [('DaEvil1', "Panathinaikiss", "ELTP"),
 			('Fred_', "Fred Ball Salzburg", "ELTP"),
 			('Hyponome', "Tagenham and Rektbridge", "ELTP"),
 			('Jade', "Blockburn Rovers", "ELTP"),
-			('NewCompte', "Ballis Saint-Germain", "ELTP"),
 			('LiddiLidd', "Ballern Munich", "ELTP"),
 			('MikeC', "Atleticap Madrid", "ELTP"),
+			('NewCompte', "Ballis Saint-Germain", "ELTP"),
 			('NoctiZ', "Ballrussia Dortmund", "ELTP"),
 			('nub', "Rekt Ham", "ELTP"),
 			('orb', "Rolling BC", "ELTP"),
@@ -19,7 +19,7 @@ captains = [('DaEvil1', "Panathinaikiss", "ELTP"),
 
 
 starting_money = 100
-team_size = 11
+team_size = 12
 
 keepers = False
 nominations = [{"name" : "nextInOrder", "nextorder" : 0}]
