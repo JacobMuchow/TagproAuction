@@ -13,7 +13,7 @@ captains = [('DaEvil1', "Panathinaikiss", "ELTP"),
 			('NoctiZ', "Ballrussia Dortmund", "ELTP"),
 			('nub', "Rekt Ham", "ELTP"),
 			('orb', "Rolling BC", "ELTP"),
-			('TDD', "TDD team", "ELTP"),
+			('TDD', "Blockingham Forekt", "ELTP"),
 
 		]
 
