@@ -1,4 +1,4 @@
-admins = ["Rems", "Pescis", "tim-sanchez", "MikeC"];
+admins = ["Rems", "Pescis", "tim-sanchez", "MikeC", "NewCompte"];
 
 
 
@@ -574,6 +574,7 @@ Meteor.methods({
     }
   },
   resumeAuction : function (person) {
+    console.log("Resuming auction");
     // Make it so you can't resume from nominating state
     if(AuctionData.findOne({State:"Nominating"}) !== undefined) {
       return false;      
@@ -587,6 +588,7 @@ Meteor.methods({
       Meteor.call("insertMessage", "Auction resumed by "+person, new Date(), "started");
   },
   pauseAuction : function(person) {
+    console.log("Pausing auction");
       ad = AuctionData.findOne();
       secondsLeft = ad.nextExpiryDate - new Date().getTime();
       delete ad._id;
