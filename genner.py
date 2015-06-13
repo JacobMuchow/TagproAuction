@@ -2,18 +2,16 @@ import json
 
 
 ## Edit these then run the script to generate the data you need
-captains = [('DaEvil1', "Panathinaikiss", "ELTP"),
-			('Dead Nan', "TagPro Rangers", "ELTP"),
-			('Fred_', "Fred Ball Salzburg", "ELTP"),
+captains = [('420assman', "Inter Ballan", "ELTP"),
+			('Fat', "TagPro Rangers", "ELTP"),
+			('Fred_', "FK Pelistag", "ELTP"),
 			('Hyponome', "Tagenham and Rektbridge", "ELTP"),
-			('Jade', "Blockburn Rovers", "ELTP"),
-			('LiddiLidd', "Ballern Munich", "ELTP"),
+			('imperious', "Holdham Capletic", "ELTP"),
+			('kutrebar', "Roll Madrid", "ELTP"),
 			('MikeC', "Atleticap Madrid", "ELTP"),
-			('NewCompte', "Ballis Saint-Germain", "ELTP"),
-			('NoctiZ', "Ballrussia Dortmund", "ELTP"),
-			('nub', "Rekt Ham", "ELTP"),
 			('orb', "Rolling BC", "ELTP"),
-			('TDD', "Blockingham Forekt", "ELTP"),
+			('Sheldon', "FC Capoli", "ELTP"),
+			('Sherrattinho', "Boostin Dynamo", "ELTP"),
 
 		]
 
