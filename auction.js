@@ -689,7 +689,7 @@ Meteor.methods({
             // Prevent players from searching him
             PlayerResponse.update({"tagpro":playerWon}, {$set:{"drafted":true}});
             // Check if he's the last one for his team
-            if(playerOrder == team.numrosterspots) {
+            if(playerOrder == team.numrosterspots || money <= 0) {
               Nominators.update({"name": state.lastBidder}, {$set: {"rosterfull": true}});
             }
             // Log message
