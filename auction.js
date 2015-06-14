@@ -1,4 +1,4 @@
-admins = ["Rems", "Pescis", "tim-sanchez", "MikeC", "NewCompte", "Pandana", "loltest"];
+admins = ["Pescis", "Wilson", "MikeC", "NewCompte", "Pandana", "Carbon", "DrMcDonald"];
 
 
 
@@ -287,51 +287,50 @@ if (Meteor.isClient) {
       if(AuctionData.findOne({}) !== undefined)
         return AuctionData.findOne({}).State == "Nominating";
     },
-    isTurnToNominate: function()
-      { 
-        if(!Meteor.userId())
-          return false;
-        players = PlayerResponse.find({}, {fields:{tagpro:1}});
-        Session.set("players", players);
-        return (AuctionData.findOne({}).Nominator == Meteor.user().username);
-      },
-      canBid: function() {
-        if(Meteor.userId() == undefined) {
-          return false;
-        }
-        else if(AuctionData.findOne({}).lastBidder == Meteor.user().username) {
-          return false;
-        }
-        return true;
-      },
-      sufficientFunds: function()
-      {
-        if(Meteor.user() !== undefined) {
-          var team = TeamNames.findOne({"captain":Meteor.user().username});
-          var balance = parseInt(team.money);
-          //console.log(team, keepers, balance);
-          //console.log(Meteor.user().username);
-          //console.log("Current balance w/o keeper: ", balance);
-          //console.log(AuctionData.findOne({}), AuctionData.findOne({}).currentPlayer);
-          keepers = Keepers.findOne({'captain':Meteor.user().username}).keepers;
-          if(keepers.indexOf(AuctionData.findOne({}).currentPlayer) >= 0 || Meteor.call("isKeeper", team.captain, AuctionData.findOne({}).currentPlayer)) {
-              balance += parseInt(team.keepermoney);            
-          }
-          console.log("Current balance w/ keeper: ", balance);
-          var minBid = parseInt(AuctionData.findOne({}).currentBid)+1;
-
-          if(balance < minBid) {
-            return false;
-          }
-          else {
-            return true;
-          }
-        }
+    isTurnToNominate: function() { 
+      if(!Meteor.userId())
         return false;
-      },
-      bids: function()
-      {
-        if(AuctionData.findOne({}) !== undefined) {
+      players = PlayerResponse.find({}, {fields:{tagpro:1}});
+      Session.set("players", players);
+      return (AuctionData.findOne({}).Nominator == Meteor.user().username);
+    },
+    canBid: function() {
+      if(Meteor.userId() == undefined) {
+        return false;
+      }
+      else if(AuctionData.findOne({}).lastBidder == Meteor.user().username) {
+        return false;
+      }
+      return true;
+    },
+    sufficientFunds: function()
+    {
+      if(Meteor.user() !== undefined) {
+        var team = TeamNames.findOne({"captain":Meteor.user().username});
+        var balance = parseInt(team.money);
+        //console.log(team, keepers, balance);
+        //console.log(Meteor.user().username);
+        //console.log("Current balance w/o keeper: ", balance);
+        //console.log(AuctionData.findOne({}), AuctionData.findOne({}).currentPlayer);
+        keepers = Keepers.findOne({'captain':Meteor.user().username}).keepers;
+        if(keepers.indexOf(AuctionData.findOne({}).currentPlayer) >= 0 || Meteor.call("isKeeper", team.captain, AuctionData.findOne({}).currentPlayer)) {
+            balance += parseInt(team.keepermoney);            
+        }
+        console.log("Current balance w/ keeper: ", balance);
+        var minBid = parseInt(AuctionData.findOne({}).currentBid)+1;
+
+        if(balance < minBid) {
+          return false;
+        }
+        else {
+          return true;
+        }
+      }
+      return false;
+    },
+    bids: function()
+    {
+      if(AuctionData.findOne({}) !== undefined) {
         var bids = [];
         var currentBid = parseInt(AuctionData.findOne({}).currentBid);
         var team = TeamNames.findOne({"captain":Meteor.user().username});
@@ -354,7 +353,7 @@ if (Meteor.isClient) {
         }
         return bids;
       }
-      }
+    }
   });
 
   Template.admin.events({
