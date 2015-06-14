@@ -146,7 +146,7 @@ if (Meteor.isClient) {
     },
     isCaptain: function() {
       if(Meteor.user() !== undefined && Meteor.userId())
-        return (TeamData.findOne({"name":Meteor.user().username, "captain" : true}))
+        return (TeamNames.findOne({"captain" : Meteor.user().username}))
       return false;
     },
   });
@@ -278,9 +278,9 @@ if (Meteor.isClient) {
         return PlayerResponse.find({}, {fields:{tagpro:1}});
     },
     isCaptain: function() {
-      if(!Meteor.userId() || !Meteor.user())
-        return false;
-      return (TeamData.findOne({"name" : Meteor.user().username, "captain" : true}))
+      if(Meteor.user() !== undefined && Meteor.userId())
+        return (TeamNames.findOne({"captain" : Meteor.user().username}))
+      return false;
     },
     isNominationTime: function() {
       if(AuctionData.findOne({}) !== undefined)
