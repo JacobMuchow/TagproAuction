@@ -579,9 +579,12 @@ Meteor.methods({
   startAuction: function(person) {
     console.log("Starting auction");
     Meteor.call("insertMessage", "Auction started by "+person, new Date(), "started");
-    nominator = Meteor.call('pickNominator');
+    var nominator = Meteor.call('pickNominator');
     console.log("nominator is: " + nominator.name);
     AuctionData.remove({});
+    if (!nominator) {
+        return;
+    }
     AuctionData.insert({State: "Nominating", nextExpiryDate: new Date().getTime()+bidTime, Nominator: nominator.name,  startTime:new Date().getTime()});
     AuctionStatus.update({}, {"status":"Live"});
   },
@@ -685,6 +688,12 @@ Meteor.methods({
             // Reset state
             nominator = Meteor.call("pickNominator");
             CurrentPick.update({}, {$inc:{'pick':1}});
+            if (!nominator) {
+              var text = "Auction draft is over! Thanks to everyone.";
+              Meteor.call("insertMessage", text, new Date());
+              return;
+            }
+
             var text = "Waiting for "+nominator +" to nominate the "+CurrentPick.findOne({}).pick+" pick of the draft.";
             Nominators.update({name:nominator.name}, {$set:{nominated:true}});
             return AuctionData.insert({State: "Nominating", nextExpiryDate: new Date().getTime()+10000, Nominator: nominator.name,  startTime:new Date().getTime()});
@@ -934,12 +943,16 @@ if (Meteor.isServer) {
 
     return true;
   });
+  var numberOfPicks = 0;
   Meteor.methods({
     getServerTime: function () {
       var _time = (new Date).getTime();
       return _time;
     },
     pickNominator : function() {
+      if (numberOfPicks > Nominators.count()) {
+          return false;
+      }
       console.log("pickNominator: started");
       var nextInOrder = Nominators.findOne({"name":"nextInOrder"});
       var nextOrder = nextInOrder.nextorder;
@@ -951,9 +964,11 @@ if (Meteor.isServer) {
       Nominators.update({"name":"nextInOrder"}, {$set: {"nextorder": newnextorder}});
       // loop through nominators in order until we find one without a full roster
       if(captain.rosterfull) {
+        numberOfPicks++;
         return Meteor.call('pickNominator');
       }
 
+      numberOfPicks = 0;
       nextNominator = Nominators.findOne({"order":newnextorder});
       var text = "Waiting for "+captain.name +" to nominate pick "+CurrentPick.findOne({}).pick+" of the draft.";
       Meteor.call("insertMessage", text, new Date());
