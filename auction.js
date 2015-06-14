@@ -31,7 +31,7 @@ var numberOfNominators = 15;
 
 
 
-Meteor.setServerTime = function() {
+function setServerTime {
   Meteor.call("getServerTime", function(error, serverMS) {
     var localMS = new Date().getTime();
     var serverOffset = serverMS - localMS;
@@ -53,11 +53,11 @@ if (Meteor.isClient) {
     Session.setDefault("playSound", "");
     Session.setDefault("teamJustBid", "");
     
-    Meteor.setServerTime();
+    setServerTime();
     Meteor.clearInterval(Meteor.intervalUpdateTimeDisplayed);
     Meteor.intervalUpdateTimeDisplayed = Meteor.setInterval(function() { Session.set('time', new Date().getTime()); }, 50);
     Meteor.clearInterval(Meteor.intervalUpdateServerTime);
-    Meteor.intervalUpdateServerTime = Meteor.setInterval(function() { Meteor.setServerTime(); }, 300000);
+    Meteor.intervalUpdateServerTime = Meteor.setInterval(setServerTime, 300000);
 
     Meteor.subscribe("divisions");
     Meteor.subscribe("teamnames");
