@@ -26,6 +26,7 @@ var additionTime = 10000;
 var lock = 0;
 var bidTimeout = 0;
 var minimumBid = 1;
+var maxNominations = 4;
 
 
 
@@ -673,6 +674,13 @@ Meteor.methods({
             var text = state.lastBidder + " wins " + playerWon + " for " + state.currentBid + "!";
             Meteor.call("insertMessage", text, new Date(), "winningBid");
             Meteor.call("insertMessage", team.teamname, new Date(), "animate");
+
+            // Check if it is the captain' last nomination.
+            Nominators.update({"name": state.Nominator}, {$inc: {numNominations: 1}});
+            var nominator = Nominators.findOne({"name": state.Nominator});
+            if (nominator.numNominations >= maxNominations) {
+                Nominators.update({"name": state.Nominator}, {$set: {rosterfull: true}});
+            }
 
             // Reset state
             nominator = Meteor.call("pickNominator");
