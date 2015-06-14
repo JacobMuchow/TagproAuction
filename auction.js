@@ -934,7 +934,7 @@ if (Meteor.isServer) {
         TeamData.remove({cost: 0});
         var teamNames = TeamNames.find();
         teamNames.forEach(function (team) {
-            var teamName = team.teamName
+            var teamName = team.teamname
             for (var order = 1; order <= numDraftSpots; order++) {
                 var player = TeamData.findOne({teamname: teamName, order: order});
                 console.log(player);
