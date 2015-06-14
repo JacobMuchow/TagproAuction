@@ -311,10 +311,6 @@ if (Meteor.isClient) {
         //console.log(Meteor.user().username);
         //console.log("Current balance w/o keeper: ", balance);
         //console.log(AuctionData.findOne({}), AuctionData.findOne({}).currentPlayer);
-        keepers = Keepers.findOne({'captain':Meteor.user().username}).keepers;
-        if(keepers.indexOf(AuctionData.findOne({}).currentPlayer) >= 0 || Meteor.call("isKeeper", team.captain, AuctionData.findOne({}).currentPlayer)) {
-            balance += parseInt(team.keepermoney);            
-        }
         console.log("Current balance w/ keeper: ", balance);
         var minBid = parseInt(AuctionData.findOne({}).currentBid)+1;
 
