@@ -156,7 +156,7 @@ if (Meteor.isClient) {
   Template.display_time.helpers({
     time : function() {
       if(AuctionData.findOne({}) !== undefined) {
-          var curtime = Date.now();
+          var curtime = Session.get('time') + Session.get('serverTimeOffset');
           var remainingTime = AuctionData.findOne({}).nextExpiryDate;
           var secsLeft = Math.ceil((remainingTime - curtime)/100)/10;
           if(secsLeft < 0) {
