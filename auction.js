@@ -22,7 +22,7 @@ PreviousAuctionData = new Mongo.Collection("previousauctiondata")
 PlayerResponse = new Mongo.Collection("playerResponse");
 
 var bidTime = 25000;
-var additionTime = 15000;
+var additionTime = 10000;
 var lock = 0;
 var bidTimeout = 0;
 
@@ -791,7 +791,7 @@ Meteor.methods({
                 console.log("acceptBid: inserted bid");
                 // Do we need to give some time back?
                 timeoutTime = secondsLeft;
-                if(parseInt(secondsLeft) < 15000) {
+                if(parseInt(secondsLeft) < additionTime) {
                   AuctionData.update({State: "Bidding"}, {$set: {nextExpiryDate: new Date().getTime()+additionTime}});
                   timeoutTime = additionTime;
                 }
