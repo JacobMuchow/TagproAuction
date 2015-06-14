@@ -280,7 +280,8 @@ if (Meteor.isClient) {
     isCaptain: function() {
       if(!Meteor.userId())
         return false;
-      console.log(Meteor.user(), Meteor.user().username);
+      console.log(Meteor.user());
+      console.log(Meteor.user().username);
       return (TeamData.findOne({"name" : Meteor.user().username, "captain" : true}))
     },
     isNominationTime: function() {
