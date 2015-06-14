@@ -31,7 +31,7 @@ var numberOfNominators = 15;
 
 
 
-function setServerTime {
+function setServerTime () {
   Meteor.call("getServerTime", function(error, serverMS) {
     var localMS = new Date().getTime();
     var serverOffset = serverMS - localMS;
