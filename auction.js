@@ -830,7 +830,7 @@ if (Meteor.isServer) {
     // Clear state
 
     var renewData = false;
-    var createDataSnake = true;
+    var createDataSnake = false;
     var renewDataSnake = true;
     var numDraftSpots = 24;
 
@@ -933,6 +933,21 @@ if (Meteor.isServer) {
 
     if (createDataSnake) {
         TeamData.remove({cost: 0, name: ""});
+        var teamNames = TeamNames.find();
+        teamNames.forEach(function (team) {
+            var teamName = team.teamname
+            for (var order = 2; order <= numDraftSpots; order++) {
+                var player = TeamData.findOne({teamname: teamName, order: order});
+                console.log(player);
+                if (!player) {
+                    TeamData.insert({ "division" : "ELTP", "cost" : 0, "name" : "", "teamname" : teamName, "order" : order})
+                }
+            }
+        });
+    }
+
+    if (renewDataSnake) {
+        TeamData.remove({cost: 0, order:{$gte: 2}});
         var teamNames = TeamNames.find();
         teamNames.forEach(function (team) {
             var teamName = team.teamname
