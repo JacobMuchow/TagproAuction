@@ -158,6 +158,7 @@ if (Meteor.isClient) {
       if(AuctionData.findOne({}) !== undefined) {
           var curtime = Date.now();
           var remainingTime = AuctionData.findOne({}).nextExpiryDate;
+          console.log(curtime, remainingTime);
           var secsLeft = Math.ceil((remainingTime - curtime)/100)/10;
           if(secsLeft < 0) {
             //Meteor.call("checkForToggle");
