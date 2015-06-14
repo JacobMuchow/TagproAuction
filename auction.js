@@ -223,7 +223,7 @@ if (Meteor.isClient) {
         }
       },
       auctionPaused : function() {
-        if(AuctionStatus.fineOne({}) !== undefined) {
+        if(AuctionStatus.findOne({}) !== undefined) {
           status = AuctionStatus.findOne({}).status;
           return (status == "Paused" || status == "Not Started");
         }
@@ -278,10 +278,8 @@ if (Meteor.isClient) {
         return PlayerResponse.find({}, {fields:{tagpro:1}});
     },
     isCaptain: function() {
-      if(!Meteor.userId())
+      if(!Meteor.userId() || !Meteor.user())
         return false;
-      console.log(Meteor.user());
-      console.log(Meteor.user().username);
       return (TeamData.findOne({"name" : Meteor.user().username, "captain" : true}))
     },
     isNominationTime: function() {
