@@ -937,6 +937,7 @@ if (Meteor.isServer) {
             var teamName = team.teamName
             for (var order = 1; order <= numDraftSpots; order++) {
                 var player = TeamData.findOne({teamname: teamName, order: order});
+                console.log(player);
                 if (!player) {
                     TeamData.insert({ "division" : "ELTP", "cost" : 0, "name" : "", "teamname" : teamName, "order" : order})
                 }
