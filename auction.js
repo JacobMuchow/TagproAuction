@@ -830,6 +830,8 @@ if (Meteor.isServer) {
     // Clear state
 
     var renewData = false;
+    var renewDataSnake = true;
+    var numDraftSpots = 24;
 
     AuctionData.remove({});
     AuctionStatus.remove({})
@@ -837,7 +839,7 @@ if (Meteor.isServer) {
     AuctionLock.remove({});
     AuctionLock.insert({"locked":0});
 
-    if(renewData) {
+    if(false) {
 
       TeamNames.remove({});
       var teamnames = {};
@@ -926,6 +928,20 @@ if (Meteor.isServer) {
         PlayerResponse.update({tagpro:drafted[x].name}, {$set:{drafted:true}});
       }
 
+    }
+
+    if (renewDataSnake) {
+        TeamData.remove({cost: 0});
+        var teamNames = TeamNames.find();
+        teamNames.forEach(function (team) {
+            var teamName = team.teamName
+            for (var order = 1; order <= numDraftSpots; order++) {
+                var player = TeamData.findOne({teamname: teamName, order: order});
+                if (!player) {
+                    TeamData.insert({ "division" : "ELTP", "cost" : 0, "name" : "", "teamname" : teamName, "order" : order})
+                }
+            }
+        });
     }
 
     Meteor.publish("divisions", function() {return Divisions.find();});
