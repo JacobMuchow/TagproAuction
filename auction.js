@@ -363,7 +363,7 @@ if (Meteor.isClient) {
     },
     'submit .add-nomination' : function(event) {
       var name = event.target.player.value;
-      Meteor.call("toggleState", name, 20);
+      Meteor.call("toggleState", name, minimumBid);
       return false;
     },
     'submit .set-bidtime' : function(event) {
