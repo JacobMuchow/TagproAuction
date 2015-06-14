@@ -829,7 +829,7 @@ if (Meteor.isServer) {
     console.log("Loading it up");
     // Clear state
 
-    var renewData = true;
+    var renewData = false;
 
     AuctionData.remove({});
     AuctionStatus.remove({})
