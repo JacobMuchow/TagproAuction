@@ -830,6 +830,7 @@ if (Meteor.isServer) {
     // Clear state
 
     var renewData = false;
+    var createDataSnake = true;
     var renewDataSnake = true;
     var numDraftSpots = 24;
 
@@ -930,12 +931,12 @@ if (Meteor.isServer) {
 
     }
 
-    if (renewDataSnake) {
-        TeamData.remove({cost: 0});
+    if (createDataSnake) {
+        TeamData.remove({cost: 0, name: ""});
         var teamNames = TeamNames.find();
         teamNames.forEach(function (team) {
             var teamName = team.teamname
-            for (var order = 1; order <= numDraftSpots; order++) {
+            for (var order = 2; order <= numDraftSpots; order++) {
                 var player = TeamData.findOne({teamname: teamName, order: order});
                 console.log(player);
                 if (!player) {
