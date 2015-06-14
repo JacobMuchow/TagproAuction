@@ -27,6 +27,7 @@ var lock = 0;
 var bidTimeout = 0;
 var minimumBid = 1;
 var maxNominations = 4;
+var numberOfNominators = 15;
 
 
 
@@ -950,7 +951,7 @@ if (Meteor.isServer) {
       return _time;
     },
     pickNominator : function() {
-      if (numberOfPicks > Nominators.count()) {
+      if (numberOfPicks > numberOfNominators) {
           return false;
       }
       console.log("pickNominator: started");
