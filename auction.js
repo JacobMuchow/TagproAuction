@@ -831,7 +831,7 @@ if (Meteor.isServer) {
 
     var renewData = false;
     var createDataSnake = false;
-    var renewDataSnake = true;
+    var renewDataSnake = false;
     var numDraftSpots = 24;
 
     AuctionData.remove({});
