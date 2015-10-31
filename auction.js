@@ -1,4 +1,4 @@
-admins = ["Pescis", "Wilson", "MikeC", "NewCompte", "Pandana", "Carbon", "DrMcDonald"];
+admins = ["Carbon", "DZ", "nub", "NewCompte"];
 
 
 
