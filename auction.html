@@ -232,7 +232,7 @@
                                     $('#adminPlayerSearch').typeahead('destroy');
                                     }
                                     catch (e) {
-                                        console.error("Error " + e " while destroying the previous typeahead");
+                                        console.error("Error " + e + " while destroying the previous typeahead");
                                     }
                                     a = PlayerResponse.find({drafted:false}).fetch();
                                     names = a.map(function(b) { return b.tagpro });
