@@ -227,8 +227,8 @@
                                     <button type="submit" class="btn btn-success">Nominate</button>
                                 </span>
                             <script>
-                                function initTypeAhead(players) {
-                                    a = players.collection.find({drafted:false}).fetch();
+                                function initTypeAhead() {
+                                    a = PlayerResponse.find({drafted:false}).fetch();
                                     names = a.map(function(b) { return b.tagpro })
                                     $('#adminPlayerSearch').typeahead({
                                       hint: true,
@@ -245,7 +245,7 @@
                                         {"max-height": "150px", "overflow-y":"auto", "background-color":"white", "padding-left":"5px"});
                                 }
 
-                                initTypeAhead(PlayerResponse);
+                                initTypeAhead();
                             </script>
                             </div>
                         </form>
