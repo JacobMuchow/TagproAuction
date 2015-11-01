@@ -222,10 +222,31 @@
                         <br>
                         <form class="form-group add-nomination" role="form">
                             <div class="input-group" style="padding-top:10px;">
-                                <input type="text" name="player" class="typeahead form-control" placeholder="Nominate Player" autocomplete="off" style="" />
+                                <input type="text" id="adminPlayerSearch" name="player" class="typeahead form-control" placeholder="Nominate Player" autocomplete="off" style="" />
                                 <span class="input-group-btn">
                                     <button type="submit" class="btn btn-success">Nominate</button>
                                 </span>
+                            <script>
+                                function initTypeAhead(players) {
+                                    a = players.collection.find({drafted:false}).fetch();
+                                    names = a.map(function(b) { return b.tagpro })
+                                    $('#adminPlayerSearch').typeahead({
+                                      hint: true,
+                                      highlight:true,
+                                      minLength: 1
+                                    },
+                                    {
+                                      name: 'players',
+                                      displayKey: 'value',
+                                      source: substringMatcher(names)
+                                    });
+                                    $(".tt-dropdown-menu").css("width", $(".typeahead").css("width"));
+                                    $(".tt-dropdown-menu").css(
+                                        {"max-height": "150px", "overflow-y":"auto", "background-color":"white", "padding-left":"5px"});
+                                }
+
+                                initTypeAhead(players);
+                            </script>
                             </div>
                         </form>
                         <form class="form-group set-bidtime" role="form">
