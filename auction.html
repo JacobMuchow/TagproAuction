@@ -229,14 +229,15 @@
                             <script>
                                 function initTypeAhead() {
                                     a = PlayerResponse.find({drafted:false}).fetch();
-                                    names = a.map(function(b) { return b.tagpro })
+                                    names = a.map(function(b) { return b.tagpro });
+                                    console.log(names);
                                     $('#adminPlayerSearch').typeahead({
                                       hint: true,
                                       highlight:true,
                                       minLength: 1
                                     },
                                     {
-                                      name: 'player',
+                                      name: 'players',
                                       displayKey: 'value',
                                       source: substringMatcher(names)
                                     });
