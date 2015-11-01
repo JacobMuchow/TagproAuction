@@ -228,6 +228,12 @@
                                 </span>
                             <script>
                                 function initTypeAhead() {
+                                    try {
+                                    $('#adminPlayerSearch').typeahead('destroy');
+                                    }
+                                    catch (e) {
+                                        console.error("Error " + e " while destroying the previous typeahead");
+                                    }
                                     a = PlayerResponse.find({drafted:false}).fetch();
                                     names = a.map(function(b) { return b.tagpro });
                                     console.log(names);
@@ -246,7 +252,7 @@
                                         {"max-height": "150px", "overflow-y":"auto", "background-color":"white", "padding-left":"5px"});
                                 }
 
-                                initTypeAhead();
+                                setInterval(initTypeAhead, 5000);;
                             </script>
                             </div>
                         </form>
