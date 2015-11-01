@@ -827,7 +827,6 @@ Meteor.methods({
 if (Meteor.isServer) {
   Meteor.startup(function () {
     console.log("Loading it up");
-    console.log("yolo");
     // Clear state
 
     var renewData = false;
