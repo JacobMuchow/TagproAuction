@@ -840,7 +840,7 @@ if (Meteor.isServer) {
     AuctionLock.remove({});
     AuctionLock.insert({"locked":0});
 
-    if(true) {
+    if(false) {
 
       TeamNames.remove({});
       var teamnames = {};
