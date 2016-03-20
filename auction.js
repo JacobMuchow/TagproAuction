@@ -500,6 +500,11 @@ if (Meteor.isClient) {
       //console.log("Got a new message from ", Meteor.user().username);
       //console.log("Message text:", event.target.text.value);
       if(!(Meteor.call("isCaptain") || Meteor.call("isAdmin"))) {
+
+        if(Meteor.user() !== undefined && Meteor.userId()) {
+          console.log("submit name:" + Meteor.user().username);
+        }
+        console.log("can't send message");
        return false;
       }
       var text = Meteor.user().username + ": " + event.target.text.value;
@@ -521,14 +526,18 @@ Meteor.methods({
     Messages.remove(messageid);
   },
   isAdmin: function() {
-    if(Meteor.user() !== undefined && Meteor.userId())
+    if(Meteor.user() !== undefined && Meteor.userId()) {
+      console.log("isAdmin name:" + Meteor.user().username);
       if(admins.indexOf(Meteor.user().username) >= 0)
         return true;
+    }
     return false;
   },
   isCaptain: function() {
-    if(Meteor.user() !== undefined && Meteor.userId())
+    if(Meteor.user() !== undefined && Meteor.userId()) {
+      console.log("isCaptain name:" + Meteor.user().username);
       return (TeamNames.findOne({"captain" : Meteor.user().username}))
+    }
     return false;
   },
   undoNomination : function(person) {
