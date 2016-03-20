@@ -53,7 +53,7 @@ for index, division in enumerate(division_names):
 
 team_names.sort(key = lambda a: a["teamname"])
 for index, division in enumerate(team_names):
-	division.order = index
+	division["order"] = index
 
 with open("./private/nominations.json", "wb") as f:
 	f.write(json.dumps(nominations))
