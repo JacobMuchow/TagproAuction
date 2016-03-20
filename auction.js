@@ -634,7 +634,7 @@ Meteor.methods({
 
             return AuctionData.insert({State: "Bidding", nextExpiryDate: new Date().getTime()+bidTime, currentBid: bid, currentPlayer: playerNominated, lastBidder: state.Nominator, Nominator:state.Nominator});
           }
-          else if (state !== undefined)
+          else if (state !== undefined && state.State == "Bidding")
           {
             AuctionData.remove({});
             console.log("Not nominating... someone won!");
