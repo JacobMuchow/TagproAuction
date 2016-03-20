@@ -52,7 +52,7 @@ if (Meteor.isClient) {
     Session.setDefault('players', []);
     Session.setDefault("playSound", "");
     Session.setDefault("teamJustBid", "");
-    
+
     setServerTime();
     Meteor.clearInterval(Meteor.intervalUpdateTimeDisplayed);
     Meteor.intervalUpdateTimeDisplayed = Meteor.setInterval(function() { Session.set('time', new Date().getTime()); }, 50);
@@ -243,7 +243,7 @@ if (Meteor.isClient) {
       var nextNominator = Nominators.findOne({"order":nextorder}).name;
       //console.log
       return nextNominator;
-    }      
+    }
   });
 
   Template.playSound.helpers({
@@ -254,7 +254,7 @@ if (Meteor.isClient) {
       }
       return false;
     },
-    soundToPlay: function() { 
+    soundToPlay: function() {
       sound = Session.get("playSound")
       Session.set("playSound", "")
       return sound;
@@ -279,7 +279,7 @@ if (Meteor.isClient) {
       if(AuctionData.findOne({}) !== undefined)
         return AuctionData.findOne({}).State == "Nominating";
     },
-    isTurnToNominate: function() { 
+    isTurnToNominate: function() {
       if(!Meteor.userId())
         return false;
       players = PlayerResponse.find({}, {fields:{tagpro:1}});
@@ -395,7 +395,7 @@ if (Meteor.isClient) {
       Session.set("playSound", "bid")
       return false;
     },
-    'submit .nominate-player' : function(event) { 
+    'submit .nominate-player' : function(event) {
       var player = event.target.player.value;
       var bid = parseInt(event.target.amount.value);
       if(!bid || bid < minimumBid) {
@@ -556,7 +556,7 @@ Meteor.methods({
     console.log("Resuming auction");
     // Make it so you can't resume from nominating state
     if(AuctionData.findOne({State:"Nominating"}) !== undefined) {
-      return false;      
+      return false;
     }
       pa = PausedAuction.findOne();
       pa.nextExpiryDate = new Date().getTime() + additionTime;
@@ -671,7 +671,7 @@ Meteor.methods({
             // Prevent players from searching him
             PlayerResponse.update({"tagpro":playerWon}, {$set:{"drafted":true}});
             // Check if he's the last one for his team
-            if(playerOrder == team.numrosterspots || money <= 0) {
+            if(playerOrder == team.numrosterspots || money < minimumBid) {
               Nominators.update({"name": state.lastBidder}, {$set: {"rosterfull": true}});
             }
             // Log message
@@ -699,7 +699,7 @@ Meteor.methods({
             Nominators.update({name:nominator.name}, {$set:{nominated:true}});
             return AuctionData.insert({State: "Nominating", nextExpiryDate: new Date().getTime()+10000, Nominator: nominator.name,  startTime:new Date().getTime()});
           }
-        
+
     }
   },
   checkForToggle: function() {
@@ -783,7 +783,7 @@ Meteor.methods({
                 Meteor.call("insertMessage",
                             bidder + " bids " + amount + " on " + AuctionData.findOne({}).currentPlayer,
                             new Date(), "bid");
-                Meteor.call("insertMessage", team.teamname, new Date(), "bidIndication");                
+                Meteor.call("insertMessage", team.teamname, new Date(), "bidIndication");
                 console.log("acceptBid: inserted bid");
                 // Do we need to give some time back?
                 timeoutTime = secondsLeft;
