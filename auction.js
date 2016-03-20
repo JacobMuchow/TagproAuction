@@ -499,7 +499,9 @@ if (Meteor.isClient) {
     'submit' : function(event) {
       //console.log("Got a new message from ", Meteor.user().username);
       //console.log("Message text:", event.target.text.value);
-      if(!(Meteor.call("isCaptain") || Meteor.call("isAdmin"))) {
+      if(!((Meteor.user() !== undefined && Meteor.userId() && admins.indexOf(Meteor.user().username) >= 0)
+          ||
+          (Meteor.user() !== undefined && Meteor.userId() && TeamNames.findOne({"captain" : Meteor.user().username})))) {
 
         if(Meteor.user() !== undefined && Meteor.userId()) {
           console.log("submit name:" + Meteor.user().username);
