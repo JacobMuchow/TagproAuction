@@ -11,7 +11,7 @@ captains = [
 	("sisu", "The Ballsheviks", "ELTP"),
 	("kutrebar", "The Human Centagpede", "ELTP"),
 	("Sam-", "The Krusty Grabs", "ELTP"),
-	("unvrs", "unny's bunnies", "ELTP"),
+	("unvrs", "unnys bunnies", "ELTP"),
 ]
 
 managers  = [
