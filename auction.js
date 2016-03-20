@@ -499,7 +499,7 @@ if (Meteor.isClient) {
     'submit' : function(event) {
       //console.log("Got a new message from ", Meteor.user().username);
       //console.log("Message text:", event.target.text.value);
-      if(!Meteor.userId()) {
+      if(!Meteor.call("isCaptain") || Meteor.call("isAdmin")) {
        return false;
       }
       var text = Meteor.user().username + ": " + event.target.text.value;
@@ -521,10 +521,16 @@ Meteor.methods({
     Messages.remove(messageid);
   },
   isAdmin: function(player) {
-    if(admins.indexOf(player) >= 0)
-      return true;
+    if(Meteor.user() !== undefined && Meteor.userId())
+      if(admins.indexOf(player) >= 0)
+        return true;
     return false;
-    },
+  },
+  isCaptain: function() {
+    if(Meteor.user() !== undefined && Meteor.userId())
+      return (TeamNames.findOne({"captain" : Meteor.user().username}))
+    return false;
+  },
   undoNomination : function(person) {
     ad = AuctionData.findOne({});
     if(ad.Nominator !== undefined) {
