@@ -116,7 +116,7 @@
         </audio>
         <audio id="sound_go">
             <source src="/sound/go.mp3" type="audio/mpeg" />
-        </audio>        
+        </audio>
     </div>
     <div class="container-fluid">
         <div class="row" style="padding-top:25px;">
@@ -168,7 +168,7 @@
         function checkForButtons() {
 
             if(oldButtonTimeout) {
-                dirtyButtons = 0; 
+                dirtyButtons = 0;
                 clearTimeout(oldButtonTimeout);
             }
 
@@ -181,7 +181,7 @@
                 }, 2000);
             }
         }
-    
+
         $("#messageSubmit").submit(function() {
             if ($.trim($("#messagetext").val()) === "") {
                 console.log("Not sending message");
@@ -191,7 +191,7 @@
 
         function playSounds(soundToPlay) {
             console.log(soundToPlay);
-            if(soundToPlay !== 'undefined') { 
+            if(soundToPlay !== 'undefined') {
                 if($("#enableSounds").is(":checked")) {
                     $("#sound_"+soundToPlay)[0].play();
                 }
@@ -497,14 +497,13 @@
               <ul class="list-group list-striped" style="text-align:left">
                     <li class="list-group-item"><b>Reddit: </b>{{reddit}}</li>
                     <li class="list-group-item"><b>Position: </b>{{position}}</li>
-                    <li class="list-group-item"><b>Mic: </b>{{mic}}</li>
-                    <li class="list-group-item"><b>Location: </b>{{location}}</li>
+                    <li class="list-group-item"><b>Location: </b>{{country}}</li>
                     <li class="list-group-item"><b>Stats link: </b>{{link}}</li>
-                    <li class="list-group-item"><b>Availability comment: </b>{{availability_comment}}</li>
-                    <li class="list-group-item"><b>Player comment: </b>{{player_comment}}</li>
-                    <li class="list-group-item"><b>Draft comment: </b>{{draft_comment}}</li>
+                    <li class="list-group-item"><b>Location: </b>{{experience}}</li>
+                    <li class="list-group-item"><b>Availability comment: </b>{{availability}}</li>
+                    <li class="list-group-item"><b>Player comment: </b>{{other_information}}</li>
               </ul>
-          </div> 
+          </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
           </div>
