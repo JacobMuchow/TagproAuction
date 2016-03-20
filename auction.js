@@ -499,7 +499,7 @@ if (Meteor.isClient) {
     'submit' : function(event) {
       //console.log("Got a new message from ", Meteor.user().username);
       //console.log("Message text:", event.target.text.value);
-      if(!Meteor.call("isCaptain") || Meteor.call("isAdmin")) {
+      if(!(Meteor.call("isCaptain") || Meteor.call("isAdmin"))) {
        return false;
       }
       var text = Meteor.user().username + ": " + event.target.text.value;
@@ -520,9 +520,9 @@ Meteor.methods({
   removeMessage : function(messageid) {
     Messages.remove(messageid);
   },
-  isAdmin: function(player) {
+  isAdmin: function() {
     if(Meteor.user() !== undefined && Meteor.userId())
-      if(admins.indexOf(player) >= 0)
+      if(admins.indexOf(Meteor.user().username) >= 0)
         return true;
     return false;
   },
