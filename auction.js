@@ -504,7 +504,7 @@ if (Meteor.isClient) {
         if(Meteor.user() !== undefined && Meteor.userId()) {
           console.log("submit name:" + Meteor.user().username);
         }
-        console.log("can't send message");
+        console.log("can't send message" + Meteor.call("isCaptain") + "" + Meteor.call("isAdmin"));
        return false;
       }
       var text = Meteor.user().username + ": " + event.target.text.value;
