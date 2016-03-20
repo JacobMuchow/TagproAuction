@@ -51,7 +51,7 @@ divisions = []
 for index, division in enumerate(division_names):
 	divisions.append({"division": division, "order":index})
 
-team_names.sort(key = lambda a: a.teamname)
+team_names.sort(key = lambda a: a["teamname"])
 for index, division in enumerate(team_names):
 	division.order = index
 
