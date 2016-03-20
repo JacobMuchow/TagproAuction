@@ -25,7 +25,7 @@ var bidTime = 25000;
 var additionTime = 10000;
 var lock = 0;
 var bidTimeout = 0;
-var minimumBid = 1;
+var minimumBid = 0;
 var maxNominations = 4;
 var numberOfNominators = 15;
 
