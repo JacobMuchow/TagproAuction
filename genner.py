@@ -3,14 +3,14 @@ import json
 
 ## Edit these then run the script to generate the data you need
 captains = [
-	("Berlin_Ball", "Berlinsconi's Bunga Bunga Party", "ELTP"),
-	("Hyponome", "Hypo and The Gnomes 2: Hypo's Gnome Children", "ELTP"),
-	("kutrebar", "The Human Centagpede", "ELTP"),
 	("NewCompte", "Ballis Saint-Germain", "ELTP"),
-	("Nube", "Salt City", "ELTP"),
+	("Berlin_Ball", "Berlinsconi's Bunga Bunga Party", "ELTP"),
 	("Ruud", "DaRuud and the Sandstorms", "ELTP"),
-	("Sam-", "The Krusty Grabs", "ELTP"),
+	("Hyponome", "Hypo and The Gnomes 2: Hypo's Gnome Children", "ELTP"),
+	("Nube", "Salt City", "ELTP"),
 	("sisu", "The Ballsheviks", "ELTP"),
+	("kutrebar", "The Human Centagpede", "ELTP"),
+	("Sam-", "The Krusty Grabs", "ELTP"),
 	("unvrs", "unny's bunnies", "ELTP"),
 ]
 
@@ -31,7 +31,7 @@ teams = []
 for index, data in enumerate(captains):
 	captain, team_name, division = data
 	nominations.append({"name" : captain, "rosterfull" : False, "order" : -1})
-	team_names.append({"teamname":team_name, "division" : division, "money" : starting_money, "keepermoney":0, "captain":captain, "numrosterspots":team_size, "count":1, "order":index})
+	team_names.append({"teamname":team_name, "division" : division, "money" : starting_money, "keepermoney":0, "captain":captain, "numrosterspots":team_size, "count":1, "order":(len(team_names) + 1)})
 	teams.append({"name" : captain, "captain":True, "order" : 1, "cost" : 0, "division" : division, "teamname" : team_name })
 	for x in range(2, team_size+1):
 		teams.append({"name":"", "order" : x, "cost" : 0, "division" : division, "teamname" : team_name })
@@ -40,7 +40,7 @@ for index, data in enumerate(captains):
 for index, data in enumerate(managers):
 	captain, team_name, division, first_player = data
 	nominations.append({"name" : captain, "rosterfull" : False, "order" : -1})
-	team_names.append({"teamname":team_name, "division" : division, "money" : starting_money, "keepermoney":0, "captain":captain, "numrosterspots":team_size, "count":1, "order":index})
+	team_names.append({"teamname":team_name, "division" : division, "money" : starting_money, "keepermoney":0, "captain":captain, "numrosterspots":team_size, "count":1, "order":(len(team_names) + 1)})
 	teams.append({"name" : first_player, "order" : 1, "cost" : 0, "division" : division, "teamname" : team_name })
 	for x in range(2, team_size+1):
 		teams.append({"name":"", "order" : x, "cost" : 0, "division" : division, "teamname" : team_name })
@@ -50,6 +50,10 @@ division_names = set(c[2] for c in captains)
 divisions = []
 for index, division in enumerate(division_names):
 	divisions.append({"division": division, "order":index})
+
+team_names.sort(a => a.teamname)
+for index, division in enumerate(team_names):
+	division.order = index
 
 with open("./private/nominations.json", "wb") as f:
 	f.write(json.dumps(nominations))
