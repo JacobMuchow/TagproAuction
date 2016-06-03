@@ -3,21 +3,17 @@ import json
 
 ## Edit these then run the script to generate the data you need
 captains = [
-	("NewCompte", "Ballis Saint-Germain", "ELTP"),
-	("Berlin_Ball", "Berlinsconi's Bunga Bunga Party", "ELTP"),
-	("Ruud", "DaRuud and the Sandstorms", "ELTP"),
-	("Hyponome", "Hypo and The Gnomes 2: Hypo's Gnome Children", "ELTP"),
-	("Nube", "Salt City", "ELTP"),
-	("sisu", "The Ballsheviks", "ELTP"),
-	("kutrebar", "The Human Centagpede", "ELTP"),
-	("Sam-", "The Krusty Grabs", "ELTP"),
-	("unvrs", "unnys bunnies", "ELTP"),
+("NewCompte", "Ballis Saint-Germain", "ELTP"),
+("sisu", "The Ballsheviks", "ELTP"),
+("Sherrattinho", "Boostin Dynamo", "ELTP"),
+("TDD", "KFC Winballdon", "ELTP"),
+("Hyponome", "Tagenham & Rektbridge", "ELTP"),
+("BERLIN BALL", "West Bombwich Albion", "ELTP"),
 ]
 
-managers  = [
-	("LoweJ", "J Bomb: Double Lowe 7", "ELTP", "ethce"),
-	("Pescis", "Pescis Legs Syndrome", "ELTP", "Strategio"),
-	("Selkie", "To Re or not to Re", "ELTP", "TheBigMac"),
+managers = [
+("Atypop", "Ballern Munich", "ELTP", "imperious"),
+("GrammarJew", "Rolling BC", "ELTP", "Nube"),
 ]
 
 starting_money = 100
