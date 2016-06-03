@@ -450,6 +450,18 @@ if (Meteor.isClient) {
       else if(messageType == "bidIndication") {
          return "hidden justBid"
       }
+      else if(messageType == "end") {
+         return "end"
+      }
+      else if(messageType == "waiting") {
+         return "waiting"
+      }
+      else if(messageType == "nextNominator") {
+         return "nextNominator"
+      }
+      else if(messageType == "removeBid") {
+         return "removeBid"
+      }
       else {
         return "";
       }
@@ -565,7 +577,7 @@ Meteor.methods({
         {$set: {currentBid: lastbid2.amount, lastBidder: lastbid2.bidder, nextExpiryDate: new Date().getTime()+bidTime}}
         );
         var text = "Last bid removed by " + person;
-        Meteor.call("insertMessage", text, new Date());
+        Meteor.call("insertMessage", text, new Date(), "removeBid");
       }
     }
   },
@@ -708,7 +720,7 @@ Meteor.methods({
             CurrentPick.update({}, {$inc:{'pick':1}});
             if (!nominator) {
               var text = "Auction draft is over! Thanks to everyone.";
-              Meteor.call("insertMessage", text, new Date());
+              Meteor.call("insertMessage", text, new Date(), "end");
               return;
             }
 
@@ -1020,9 +1032,9 @@ if (Meteor.isServer) {
       numberOfPicks = 0;
       nextNominator = Nominators.findOne({"order":newnextorder});
       var text = "Waiting for "+captain.name +" to nominate pick "+CurrentPick.findOne({}).pick+" of the draft.";
-      Meteor.call("insertMessage", text, new Date());
+      Meteor.call("insertMessage", text, new Date(), "waiting");
       var text = nextNominator.name +" is nominating after "+ captain.name;
-      Meteor.call("insertMessage", text, new Date());
+      Meteor.call("insertMessage", text, new Date(), "nextNominator");
       return captain;
     }
   });
