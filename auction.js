@@ -469,42 +469,10 @@ if (Meteor.isClient) {
   });
   // Messages
   Template.messages.helpers({
-    messages: function() {
-      return Messages.find({}, {sort: {createdAt: -1}, limit:50});
-    },
-    getMessageText: function() {
-      return Messages.findOne({}, {sort: {createdAt: -1}}).text;
-    },
     canSendMessage: function() {
       if(!Meteor.userId())
         return false;
       return true;
-    },
-    admin : function() {
-      if(Meteor.user() !== undefined) {
-        if(admins.indexOf(Meteor.user().username) >= 0) {
-          return true;
-        }
-      }
-      return false;
-    },
-    messageColor: function(messageType) {
-      // Class to add to the message (for coloring or sending information to the client)
-      if(messageType == "winningBid") {
-        return "list-group-item-success";
-      }
-      else if(messageType == "bid") {
-        return "list-group-item-warning";
-      }
-      else if(messageType == "nomination") {
-        return "list-group-item-info"
-      }
-      else if(messageType == "animate") {
-        return "hidden winningTeam"
-      }
-      else {
-        return "";
-      }
     }
   });
   Template.messages.events({
