@@ -462,6 +462,9 @@ if (Meteor.isClient) {
       else if(messageType == "removeBid") {
          return "removeBid"
       }
+      else if(messageType == "undoNomination") {
+         return "undoNomination"
+      }
       else {
         return "";
       }
@@ -529,7 +532,7 @@ Meteor.methods({
       AuctionData.remove({});
       AuctionData.insert({State: "Nominating", nextExpiryDate: new Date().getTime()+bidTime, Nominator: nominator, startTime:new Date().getTime()});
       var text = "Last nomination removed by " + person;
-      Meteor.call("insertMessage", text, new Date());
+      Meteor.call("insertMessage", text, new Date(), "undoNomination");
     }
   },
   removeLastBid : function(person) {
