@@ -101,6 +101,13 @@ if (Meteor.isClient) {
       else {
         return "rgb(134, 198, 230)";
       }
+    },
+    isManagedByManager: function(teamname) {
+        var team = TeamNames.findOne({"teamname" : teamname});
+        if (!team) {
+            return false;
+        }
+        return !TeamData.count({name: team.captain, captain: true})
     }
   })
 

@@ -361,8 +361,11 @@
                     {{teamname}}
                     <br>
                     ({{money}})
-                    <br>
-                    captain: {{captain}}
+                    {{if isManagedByManager teamname}}
+                        <br>
+                        <img src="/captain.png">
+                        {{captain}}
+                    {{/if}}
                 </li>
                 {{> renderplayers teamname=teamname}}
             </ul>
