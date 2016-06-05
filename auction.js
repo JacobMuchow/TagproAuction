@@ -28,6 +28,7 @@ var bidTimeout = 0;
 var minimumBid = 0;
 var maxNominations = 400;
 var numberOfNominators = 15;
+var auctionExpiryDate = 0; // a lower bound on the auction expiry date
 
 
 
@@ -369,7 +370,7 @@ if (Meteor.isClient) {
     },
     'submit .add-nomination' : function(event) {
       var name = event.target.player.value;
-      Meteor.call("toggleState", name, minimumBid);
+      Meteor.call("nominatePlayer", name, minimumBid);
       return false;
     },
     'submit .set-bidtime' : function(event) {
@@ -406,7 +407,7 @@ if (Meteor.isClient) {
       if(!bid || bid < minimumBid) {
         bid = minimumBid;
       }
-      Meteor.call("toggleState", player, bid);
+      Meteor.call("nominatePlayer", player, bid);
       return false;
     },
     'click .bid-button' : function(event) {
@@ -534,13 +535,15 @@ Meteor.methods({
     return false;
   },
   undoNomination : function(person) {
-    var ad = AuctionData.findOne({});
-    if(ad.Nominator !== undefined) {
-      nominator = ad.Nominator;
-      AuctionData.remove({});
-      AuctionData.insert({State: "Nominating", nextExpiryDate: new Date().getTime()+bidTime, Nominator: nominator, startTime:new Date().getTime()});
-      var text = "Last nomination removed by " + person;
-      Meteor.call("insertMessage", text, new Date(), "undoNomination");
+    if(Meteor.isServer) {
+        var ad = AuctionData.findOne({});
+        if(ad.Nominator !== undefined) {
+          nominator = ad.Nominator;
+          AuctionData.remove({});
+          AuctionData.insert({State: "Nominating", nextExpiryDate: new Date().getTime()+bidTime, Nominator: nominator, startTime:new Date().getTime()});
+          var text = "Last nomination removed by " + person;
+          Meteor.call("insertMessage", text, new Date(), "undoNomination");
+        }
     }
   },
   removePlayer: function(person, playerName) {
@@ -647,8 +650,8 @@ Meteor.methods({
       Messages.insert({text:texttowrite,createdAt:new Date(),messageType:messageType});
     }
   },
-  toggleState: function(playerNominated, bid) {
-      console.log("Checking toggle state");
+  nominatePlayer: function(playerNominated, bid) {
+      console.log("Nominating a player");
 
       if(Meteor.isServer) {
           var state = AuctionData.findOne();
@@ -657,6 +660,9 @@ Meteor.methods({
             console.log("State is nominating");
             var team = TeamNames.findOne({captain:state.Nominator});
 
+            if (!playerNominated) {
+              return false;
+            }
             var money = team.money;
             if(Meteor.call("isKeeper", state.Nominator, playerNominated)) {
               money = team.money + team.keepermoney;
@@ -684,8 +690,23 @@ Meteor.methods({
 
             return AuctionData.insert({State: "Bidding", nextExpiryDate: new Date().getTime()+bidTime, currentBid: bid, currentPlayer: playerNominated, lastBidder: state.Nominator, Nominator:state.Nominator});
           }
-          else if (state !== undefined && state.State == "Bidding")
+      }
+  }
+  toggleState: function(playerNominated, bid) {
+      console.log("Checking toggle state, which means checking if a player was won");
+
+      if(Meteor.isServer) {
+          var state = AuctionData.findOne();
+
+          if (state !== undefined && state.State == "Bidding")
           {
+            if (playerNominated) {
+              return false;
+            }
+            if (new Date().getTime() < auctionExpiryDate) {
+              Meteor.call("insertMessage", "The auction time bug (2) would have happened but didn't.", new Date());
+              return false;
+            }
             AuctionData.remove({});
             console.log("Not nominating... someone won!");
             var team = TeamNames.findOne({"captain" : state.lastBidder});
@@ -757,10 +778,17 @@ Meteor.methods({
     if(Meteor.isServer) {
       console.log("Checking for toggle from client");
       var currentState = AuctionData.findOne();
-      if(currentState.State == "Bidding") {
-        if(currentState.nextExpiryDate < new Date().getTime()) {
-          Meteor.call('toggleState');
-        }
+      if(currentState && currentState.State == "Bidding") {
+        var currentTime = new Date().getTime();
+        if(currentState.nextExpiryDate < currentTime) {
+            if (auctionExpiryDate < currentTime) {
+              Meteor.call('toggleState');
+              return false;
+            }
+            else {
+              Meteor.call("insertMessage", "The auction time bug (1) would have happened but didn't.", new Date());
+            }
+       }
       }
       return true;
     }
@@ -836,9 +864,11 @@ Meteor.methods({
                 Meteor.call("insertMessage", team.teamname, new Date(), "bidIndication");
                 console.log("acceptBid: inserted bid");
                 // Do we need to give some time back?
-                timeoutTime = secondsLeft;
+                var timeoutTime = secondsLeft;
+                
                 if(parseInt(secondsLeft) < additionTime) {
-                  AuctionData.update({State: "Bidding"}, {$set: {nextExpiryDate: new Date().getTime()+additionTime}});
+                  auctionExpiryDate /* global variable */ = new Date().getTime()+additionTime; 
+                  AuctionData.update({State: "Bidding"}, {$set: {nextExpiryDate: auctionExpiryDate}});
                   timeoutTime = additionTime;
                 }
 
