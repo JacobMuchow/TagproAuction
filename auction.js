@@ -551,7 +551,7 @@ Meteor.methods({
         }
         var player = TeamData.findOne({name: playerName});
         if (!player) {
-            var text = "Player " + playerName + " hasn't been removed by " + person + " because it doesn't exist.";
+            var text = "Player " + playerName + " couldn't be removed by " + person + " because it doesn't exist.";
             Meteor.call("insertMessage", text, new Date());
             return;
         }
@@ -561,7 +561,7 @@ Meteor.methods({
         var cost = player.cost;
         var team = TeamNames.findOne({teamname: teamName});
         if (!team) {
-            var text = "Player " + playerName + " hasn't been removed by " + person + " because its team doesn't exist. (WTF ?????!!1???)";
+            var text = "Player " + playerName + " couldn't be removed by " + person + " because its team " + teamName + " doesn't exist. (WTF ?????!!1???)";
             Meteor.call("insertMessage", text, new Date());
             return;
         }
@@ -573,7 +573,7 @@ Meteor.methods({
         TeamNames.update({_id: teamId}, {$inc: {money: cost, count: -1}});
         Nominators.update({name: nominatorName}, {$set:{rosterfull: false}});
         PlayerResponse.update({tagpro: playerName}, {$set:{drafted: false}});
-        var text = "Player " + playerName + " removed by " + person;
+        var text = "Player " + playerName + " removed from " + teamName + " by " + person;
         Meteor.call("insertMessage", text, new Date(), "removePlayer");
     }
   },
