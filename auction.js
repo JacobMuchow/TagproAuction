@@ -595,49 +595,56 @@ Meteor.methods({
     }
   },
   resumeAuction : function (person) {
-    console.log("Resuming auction");
-    // Make it so you can't resume from nominating state
-    if(AuctionData.findOne({State:"Nominating"}) !== undefined) {
-      return false;
+    if(Meteor.isServer) {
+        console.log("Resuming auction");
+        // Make it so you can't resume from nominating state
+        if(AuctionData.findOne({State:"Nominating"}) !== undefined) {
+            return false;
+        }
+        var pa = PausedAuction.findOne();
+        pa.nextExpiryDate = new Date().getTime() + additionTime;
+        delete pa._id;
+        AuctionStatus.update({}, {"status":"Live"});
+        AuctionData.remove({});
+        AuctionData.insert(pa);
+        Meteor.call("insertMessage", "Auction resumed by "+person, new Date(), "started");
     }
-      pa = PausedAuction.findOne();
-      pa.nextExpiryDate = new Date().getTime() + additionTime;
-      delete pa._id;
-      AuctionStatus.update({}, {"status":"Live"});
-      AuctionData.remove({});
-      AuctionData.insert(pa);
-      Meteor.call("insertMessage", "Auction resumed by "+person, new Date(), "started");
   },
   pauseAuction : function(person) {
-    console.log("Pausing auction");
-      ad = AuctionData.findOne();
-      secondsLeft = ad.nextExpiryDate - new Date().getTime();
-      delete ad._id;
-      PausedAuction.insert(ad);
-      PausedAuction.update({}, {$set: {"secondsLeft": secondsLeft}});
-      Meteor.call("insertMessage", "Auction paused by "+person, new Date(), "paused");
-      AuctionStatus.update({}, {"status":"Paused"});
-      AuctionData.remove({})
+    if(Meteor.isServer) {
+        console.log("Pausing auction");
+        var ad = AuctionData.findOne();
+        var secondsLeft = ad.nextExpiryDate - new Date().getTime();
+        delete ad._id;
+        PausedAuction.insert(ad);
+        PausedAuction.update({}, {$set: {"secondsLeft": secondsLeft}});
+        Meteor.call("insertMessage", "Auction paused by "+person, new Date(), "paused");
+        AuctionStatus.update({}, {"status":"Paused"});
+        AuctionData.remove({})
+    }
   },
   startAuction: function(person) {
-    console.log("Starting auction");
-    Meteor.call("insertMessage", "Auction started by "+person, new Date(), "started");
-    var nominator = Meteor.call('pickNominator');
-    console.log("nominator is: " + nominator.name);
-    AuctionData.remove({});
-    if (!nominator) {
-        return;
+    if(Meteor.isServer) {
+        console.log("Starting auction");
+        Meteor.call("insertMessage", "Auction started by "+person, new Date(), "started");
+        var nominator = Meteor.call('pickNominator');
+        console.log("nominator is: " + nominator.name);
+        AuctionData.remove({});
+        if (!nominator) {
+            return;
+        }
+        AuctionData.insert({State: "Nominating", nextExpiryDate: new Date().getTime()+bidTime, Nominator: nominator.name,  startTime:new Date().getTime()});
+        AuctionStatus.update({}, {"status":"Live"});
     }
-    AuctionData.insert({State: "Nominating", nextExpiryDate: new Date().getTime()+bidTime, Nominator: nominator.name,  startTime:new Date().getTime()});
-    AuctionStatus.update({}, {"status":"Live"});
   },
   getAuctionStatus:function() {
     return AuctionData.findOne();
   },
   insertMessage:function(text, createdAt, messageType) {
-    if(Meteor.isServer)
+    if(Meteor.isServer) {
       var texttowrite = text;
       Messages.insert({text:texttowrite,createdAt:new Date(),messageType:messageType});
+    }
   },
   toggleState: function(playerNominated, bid) {
       console.log("Checking toggle state");
