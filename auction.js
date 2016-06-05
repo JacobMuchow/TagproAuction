@@ -651,7 +651,7 @@ Meteor.methods({
     }
   },
   nominatePlayer: function(playerNominated, bid) {
-      console.log("Nominating a player");
+      console.log("Nominating a player: " + playerNominated);
 
       if(Meteor.isServer) {
           var state = AuctionData.findOne();
@@ -708,9 +708,9 @@ Meteor.methods({
               return false;
             }
             AuctionData.remove({});
-            console.log("Not nominating... someone won!");
             var team = TeamNames.findOne({"captain" : state.lastBidder});
             var playerWon = state.currentPlayer;
+            console.log("Not nominating... " + playerWon + " won!");
 
             // ALL CAPS-specific thing here
             if(state.lastBidder == "YOSSARIAN") {
