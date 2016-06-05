@@ -565,7 +565,7 @@ Meteor.methods({
             Meteor.call("insertMessage", text, new Date());
             return;
         }
-        var teamId = team.id;
+        var teamId = team._id;
         var nominatorName = team.captain;
         TeamData.remove({_id: playerId});
         TeamData.update({order: {$gt: order}, teamname: teamName},{$inc:{order: -1}}, {multi: true});
