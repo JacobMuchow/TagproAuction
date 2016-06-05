@@ -365,6 +365,7 @@ if (Meteor.isClient) {
     'click .remove-player' : function(event) {
       var name = document.getElementById("adminPlayerSearch").value;
       Meteor.call("removePlayer", Meteor.user().username, name);
+      document.getElementById("adminPlayerSearch").value = "";
     },
     'submit .add-nomination' : function(event) {
       var name = event.target.player.value;
@@ -551,7 +552,7 @@ Meteor.methods({
         }
         var player = TeamData.findOne({name: playerName});
         if (!player) {
-            var text = "Player " + playerName + " couldn't be removed by " + person + " because it doesn't exist.";
+            var text = "Player " + playerName + " couldn't be removed by " + person + " because it doesn't exist or hasn't been drafted.";
             Meteor.call("insertMessage", text, new Date());
             return;
         }
