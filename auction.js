@@ -86,7 +86,7 @@ if (Meteor.isClient) {
   // Rosters
   Template.renderteam.helpers({
     teams : function(division) {
-      return TeamNames.find({"division" : division}, {fields:{teamname:1, keepermoney:1, money:1, division:1, captain: 1}, sort:{order:1}});
+      return TeamNames.find({"division" : division}, {fields:{teamname:1, keepermoney:1, money:1, division:1, captain:1}, sort:{order:1}});
     },
     teamID: function(teamname) {
       return teamname.split(" ").join("_");
@@ -107,7 +107,7 @@ if (Meteor.isClient) {
         if (!team) {
             return false;
         }
-        return !(TeamData.find({name: team.captain, captain: true}).length);
+        return !(TeamData.find({name: team.captain, captain: true}).count());
     }
   })
 
