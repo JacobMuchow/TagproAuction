@@ -691,7 +691,7 @@ Meteor.methods({
             return AuctionData.insert({State: "Bidding", nextExpiryDate: new Date().getTime()+bidTime, currentBid: bid, currentPlayer: playerNominated, lastBidder: state.Nominator, Nominator:state.Nominator});
           }
       }
-  }
+  },
   toggleState: function(playerNominated, bid) {
       console.log("Checking toggle state, which means checking if a player was won");
 
@@ -771,7 +771,7 @@ Meteor.methods({
             return AuctionData.insert({State: "Nominating", nextExpiryDate: new Date().getTime()+10000, Nominator: nominator.name,  startTime:new Date().getTime()});
           }
 
-    }
+      }
   },
   checkForToggle: function() {
     console.log("checking for toggle");
