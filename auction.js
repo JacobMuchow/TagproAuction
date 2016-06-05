@@ -107,7 +107,7 @@ if (Meteor.isClient) {
         if (!team) {
             return false;
         }
-        return !TeamData.count({name: team.captain, captain: true})
+        return !(TeamData.find({name: team.captain, captain: true}).length);
     }
   })
 
