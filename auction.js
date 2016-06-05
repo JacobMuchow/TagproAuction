@@ -568,7 +568,7 @@ Meteor.methods({
         var teamId = team.id;
         var nominatorName = team.captain;
         TeamData.remove({_id: playerId});
-        TeamData.update({order: {$gt: order}, teamname: teamName},{$dec:{order: 1}}, {multi: true});
+        TeamData.update({order: {$gt: order}, teamname: teamName},{$inc:{order: -1}}, {multi: true});
         TeamData.insert({"division": "ELTP", "cost": 0, "name": "", "teamname": teamName, "order": team.numrosterspots});
         TeamNames.update({_id: teamId}, {$inc: {money: cost, count: -1}});
         Nominators.update({name: nominatorName}, {$set:{rosterfull: false}});
