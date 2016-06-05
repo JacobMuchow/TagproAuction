@@ -614,6 +614,9 @@ Meteor.methods({
             return false;
         }
         var pa = PausedAuction.findOne();
+        if (!pa) {
+            return false;
+        }
         pa.nextExpiryDate = new Date().getTime() + additionTime;
         delete pa._id;
         AuctionStatus.update({}, {"status":"Live"});
