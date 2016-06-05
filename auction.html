@@ -225,6 +225,7 @@
                                 <input type="text" id="adminPlayerSearch" name="player" class="typeahead form-control" placeholder="Nominate Player" autocomplete="off" style="" />
                                 <span class="input-group-btn">
                                     <button type="submit" class="btn btn-success">Nominate</button>
+                                    <button type="button" class="btn btn-success remove-player">Remove</button>
                                 </span>
                             <script>
                                 function initTypeAhead() {
@@ -234,8 +235,8 @@
                                     catch (e) {
                                         console.error("Error " + e + " while destroying the previous typeahead");
                                     }
-                                    a = PlayerResponse.find({drafted:false}).fetch();
-                                    names = a.map(function(b) { return b.tagpro });
+                                    var a = PlayerResponse.find({}).fetch();
+                                    var names = a.map(function(b) { return b.tagpro });
                                     $('#adminPlayerSearch').typeahead({
                                       hint: true,
                                       highlight:true,

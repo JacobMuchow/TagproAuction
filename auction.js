@@ -362,6 +362,10 @@ if (Meteor.isClient) {
     'click .undo-nomination' : function(event) {
       Meteor.call("undoNomination", Meteor.user().username);
     },
+    'click .remove-player' : function(event) {
+      var name = document.getElementById("adminPlayerSearch").value;
+      Meteor.call("removePlayer", Meteor.user().username, name);
+    },
     'submit .add-nomination' : function(event) {
       var name = event.target.player.value;
       Meteor.call("toggleState", name, minimumBid);
@@ -432,20 +436,20 @@ if (Meteor.isClient) {
         return "winningbid";
       }
       else if(messageType == "bid") {
-        return "list-group-item-warning";
+        return "list-group-item-warning bid";
       }
       else if(messageType == "nomination") {
-        return "list-group-item-info";
+        return "list-group-item-info nomination";
       }
       else if(messageType == "animate") {
         Session.set("playSound", "playerWon");
         return "hidden winningTeam";
       }
       else if(messageType == "started") {
-        return "list-group-item-info";
+        return "list-group-item-info started";
       }
       else if(messageType == "paused") {
-        return "list-group-item-danger";
+        return "list-group-item-danger paused";
       }
       else if(messageType == "bidIndication") {
          return "hidden justBid"
@@ -461,6 +465,9 @@ if (Meteor.isClient) {
       }
       else if(messageType == "removeBid") {
          return "removeBid"
+      }
+      else if(messageType == "removePlayer") {
+         return "list-group-item-danger removePlayer"
       }
       else if(messageType == "undoNomination") {
          return "undoNomination"
@@ -526,13 +533,48 @@ Meteor.methods({
     return false;
   },
   undoNomination : function(person) {
-    ad = AuctionData.findOne({});
+    var ad = AuctionData.findOne({});
     if(ad.Nominator !== undefined) {
       nominator = ad.Nominator;
       AuctionData.remove({});
       AuctionData.insert({State: "Nominating", nextExpiryDate: new Date().getTime()+bidTime, Nominator: nominator, startTime:new Date().getTime()});
       var text = "Last nomination removed by " + person;
       Meteor.call("insertMessage", text, new Date(), "undoNomination");
+    }
+  },
+  removePlayer: function(person, playerName) {
+    if(Meteor.isServer) {
+        if (!playerName) {
+            var text = person + ", pls choose a player before clicking the Remove Player button.";
+            Meteor.call("insertMessage", text, new Date());
+            return;
+        }
+        var player = TeamData.findOne({name: playerName});
+        if (!player) {
+            var text = "Player " + playerName + " hasn't been removed by " + person + " because it doesn't exist.";
+            Meteor.call("insertMessage", text, new Date());
+            return;
+        }
+        var order = player.order;
+        var teamName = player.teamname;
+        var playerId = player._id;
+        var cost = player.cost;
+        var team = TeamNames.findOne({teamname: teamName});
+        if (!team) {
+            var text = "Player " + playerName + " hasn't been removed by " + person + " because its team doesn't exist. (WTF ?????!!1???)";
+            Meteor.call("insertMessage", text, new Date());
+            return;
+        }
+        var teamId = team.id;
+        var nominatorName = team.captain;
+        TeamData.remove({_id: playerId});
+        TeamData.update({order: {$gt: order}, teamname: teamName},{$dec:{order: 1}}, {multi: true});
+        TeamData.insert({"division": "ELTP", "cost": 0, "name": "", "teamname": teamName, "order": team.numrosterspots});
+        TeamNames.update({_id: teamId}, {$inc: {money: cost, count: -1}});
+        Nominators.update({name: nominatorName}, {$set:{rosterfull: false}});
+        PlayerResponse.update({tagpro: playerName}, {$set:{drafted: false}});
+        var text = "Player " + playerName + " removed by " + person;
+        Meteor.call("insertMessage", text, new Date(), "removePlayer");
     }
   },
   removeLastBid : function(person) {
