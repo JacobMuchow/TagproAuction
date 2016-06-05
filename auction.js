@@ -585,6 +585,7 @@ Meteor.methods({
         TeamNames.update({_id: teamId}, {$inc: {money: cost, count: -1}});
         Nominators.update({name: nominatorName}, {$set:{rosterfull: false}});
         PlayerResponse.update({tagpro: playerName}, {$set:{drafted: false}});
+        CurrentPick.update({}, {$inc:{'pick':-1}});
         var text = "Player " + playerName + " removed from " + teamName + " by " + person;
         Meteor.call("insertMessage", text, new Date(), "removePlayer");
     }
