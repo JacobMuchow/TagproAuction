@@ -370,6 +370,7 @@ if (Meteor.isClient) {
     },
     'submit .add-nomination' : function(event) {
       var name = event.target.player.value;
+      Meteor.call("insertMessage", name + " has been nominated by the admin " + Meteor.user().username, new Date());
       Meteor.call("nominatePlayer", name, minimumBid);
       return false;
     },
