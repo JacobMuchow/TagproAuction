@@ -296,7 +296,7 @@ if (Meteor.isClient) {
       return true;
     },
     sufficientFunds: function() {
-      if(Meteor.user() !== undefined) {
+      if(Meteor.user() !== undefined && AuctionData.findOne({})) {
         var team = TeamNames.findOne({"captain":Meteor.user().username});
         var balance = parseInt(team.money);
         //console.log(team, keepers, balance);
