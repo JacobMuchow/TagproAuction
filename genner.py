@@ -3,17 +3,17 @@ import json
 
 ## Edit these then run the script to generate the data you need
 captains = [
-("NewCompte", "Ballis Saint-Germain", "ELTP"),
-("sisu", "The Ballsheviks", "ELTP"),
-("Sherrattinho", "Boostin Dynamo", "ELTP"),
-("TDD", "KFC Winballdon", "ELTP"),
-("Hyponome", "Tagenham & Rektbridge", "ELTP"),
-("BERLIN BALL", "West Bombwich Albion", "ELTP"),
+("kutrebar", "Roll Madrid", "ELTP"),
+("Sam-", "Boostin Dynamo", "ELTP"),
+("unvrs", "FK Pelistag", "ELTP"),
 ]
 
 managers = [
-("Atypop", "Ballern Munich", "ELTP", "imperious"),
-("GrammarJew", "Rolling BC", "ELTP", "Nube"),
+("Comakip", "The Mumble Bees", "ELTP", ""),
+("LoweJ", "London WASDs", "ELTP", "ethce"),
+("MrSaggyBalls", "Ajux Danksterdam", "ELTP", "BERLIN BALL"),
+("Raylan", "Blocka Juniors", "ELTP", "SIGSEGV"),
+("Selkie", "Hidejuke Split", "ELTP", "Nube"),
 ]
 
 starting_money = 100
