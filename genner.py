@@ -39,7 +39,7 @@ for index, data in enumerate(managers):
 	nominations.append({"name" : captain, "rosterfull" : False, "order" : -1})
 	if first_player:
 		teams.append({"name" : first_player, "cocaptain":True, "order" : 1, "cost" : 0, "division" : division, "teamname" : team_name })
-		count++
+		count = count + 1
 	team_names.append({"teamname":team_name, "division" : division, "money" : starting_money + additional_money, "keepermoney":0, "captain":captain, "numrosterspots":team_size, "count":count, "order":(len(team_names) + 1)})
 	for x in range(count+1, team_size+1):
 		teams.append({"name":"", "order" : x, "cost" : 0, "division" : division, "teamname" : team_name })
