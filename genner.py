@@ -5,11 +5,11 @@ import json
 captains = [
 ("kutrebar", "Roll Madrid", "ELTP", 0),
 ("Sam-", "Boostin Dynamo", "ELTP", 0),
-("unvrs", "FK Pelistag", "ELTP", 10),
+("unvrs", "FK Pelistag", "ELTP", 5),
 ]
 
 managers = [
-("Comakip", "The Mumble Bees", "ELTP", 25, ""),
+("Comakip", "The Mumble Bees", "ELTP", 15, "DaEvil1"),
 ("LoweJ", "London WASDs", "ELTP", 0, "ethce"),
 ("MrSaggyBalls", "Ajux Danksterdam", "ELTP", 0, "BERLIN BALL"),
 ("Raylan", "Blocka Juniors", "ELTP", 0, "SIGSEGV"),
