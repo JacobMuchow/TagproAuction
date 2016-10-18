@@ -43,7 +43,7 @@ for index, data in enumerate(managers):
 		teams.append({"name":"", "order" : x, "cost" : 0, "division" : division, "teamname" : team_name })
 	keepers.append({"captain" : captain, "keepers":[]})
 
-division_names = set(c[2] for c in captains)
+division_names = set(c[2] for c in captains) | set(m[2] for m in managers)
 divisions = []
 for index, division in enumerate(division_names):
 	divisions.append({"division": division, "order":index})
