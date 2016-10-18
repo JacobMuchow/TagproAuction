@@ -10,7 +10,7 @@ managers = [
 ("failed", "failed's heroes", "ELTP", 0, ""),
 ("Ruud", "FC Jukerecht", "ELTP", 0, ""),
 ("Atypop", "Popsford Jukenited", "ELTP", 0, ""),
-("Chuck_Finley", "Stand-On-Re de Liège", "ELTP", 0, ""),
+("Chuck_Finley", "Stand-On-Re de Liege", "ELTP", 0, ""),
 ("AlHarrington", "Turun Balloseura", "ELTP", 0, ""), 
 ]
 
