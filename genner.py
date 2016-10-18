@@ -3,21 +3,19 @@ import json
 
 ## Edit these then run the script to generate the data you need
 captains = [
-("kutrebar", "Roll Madrid", "ELTP", 0),
-("Sam-", "Boostin Dynamo", "ELTP", 0),
-("unvrs", "FK Pelistag", "ELTP", 5),
 ]
 
 managers = [
-("Comakip", "The Mumble Bees", "ELTP", 15, "DaEvil1"),
-("LoweJ", "London WASDs", "ELTP", 0, "ethce"),
-("MrSaggyBalls", "Ajux Danksterdam", "ELTP", 0, "BERLIN BALL"),
-("Raylan", "Blocka Juniors", "ELTP", 0, "SIGSEGV"),
-("Selkie", "Hidejuke Split", "ELTP", 0, "Nube"),
+("Battosay", "Angers SCO", "ELTP", 0, ""),
+("failed", "failed's heroes", "ELTP", 0, ""),
+("Ruud", "FC Jukerecht", "ELTP", 0, ""),
+("Atypop", "Popsford Jukenited", "ELTP", 0, ""),
+("Chuck_Finley", "Stand-On-Re de Liège", "ELTP", 0, ""),
+("AlHarrington", "Turun Balloseura", "ELTP", 0, ""), 
 ]
 
 starting_money = 100
-team_size = 5
+team_size = 4
 
 keepers = False
 nominations = [{"name" : "nextInOrder", "nextorder" : 0}]
