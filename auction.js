@@ -919,7 +919,7 @@ if (Meteor.isServer) {
     console.log("Loading it up");
     // Clear state
 
-    var renewData = false;
+    var renewData = true;
     var createDataSnake = false;
     var renewDataSnake = false;
     var numDraftSpots = 24;
