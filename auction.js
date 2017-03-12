@@ -572,18 +572,18 @@ Meteor.methods({
         var teamName = player.teamname;
         var playerId = player._id;
         var cost = player.cost;
-        var keepers = Keepers.findOne({"captain":state.lastBidder}).keepers;
-        var keeperMoneyOnThisBid = 0;
-        if(keepers.indexOf(playerWon) >= 0) {
-              console.log(playerWon, " is a keeper!");
-              var keeperMoneyOnThisBid = Math.min(cost, maxKeeperMoneyOnOneBid);
-              cost = cost - keeperMoneyOnThisBid;
-        }
         var team = TeamNames.findOne({teamname: teamName});
         if (!team) {
             var text = "Player " + playerName + " couldn't be removed by " + person + " because its team " + teamName + " doesn't exist. (WTF ?????!!1???)";
             Meteor.call("insertMessage", text, new Date());
             return;
+        }
+        var keepers = Keepers.findOne({"captain":team.captain}).keepers;
+        var keeperMoneyOnThisBid = 0;
+        if(keepers.indexOf(playerWon) >= 0) {
+              console.log(playerWon, " is a keeper!");
+              var keeperMoneyOnThisBid = Math.min(cost, maxKeeperMoneyOnOneBid);
+              cost = cost - keeperMoneyOnThisBid;
         }
         var teamId = team._id;
         var nominatorName = team.captain;
