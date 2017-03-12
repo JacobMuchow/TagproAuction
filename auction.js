@@ -572,6 +572,13 @@ Meteor.methods({
         var teamName = player.teamname;
         var playerId = player._id;
         var cost = player.cost;
+        var keepers = Keepers.findOne({"captain":state.lastBidder}).keepers;
+        var keeperMoneyOnThisBid = 0;
+        if(keepers.indexOf(playerWon) >= 0) {
+              console.log(playerWon, " is a keeper!");
+              var keeperMoneyOnThisBid = Math.min(cost, maxKeeperMoneyOnOneBid);
+              cost = cost - keeperMoneyOnThisBid;
+        }
         var team = TeamNames.findOne({teamname: teamName});
         if (!team) {
             var text = "Player " + playerName + " couldn't be removed by " + person + " because its team " + teamName + " doesn't exist. (WTF ?????!!1???)";
@@ -583,7 +590,7 @@ Meteor.methods({
         TeamData.remove({_id: playerId});
         TeamData.update({order: {$gt: order}, teamname: teamName},{$inc:{order: -1}}, {multi: true});
         TeamData.insert({"division": "ELTP", "cost": 0, "name": "", "teamname": teamName, "order": team.numrosterspots});
-        TeamNames.update({_id: teamId}, {$inc: {money: cost, count: -1}});
+        TeamNames.update({_id: teamId}, {$inc: {money: cost, keepermoney: keeperMoneyOnThisBid, count: -1}});
         Nominators.update({name: nominatorName}, {$set:{rosterfull: false}});
         PlayerResponse.update({tagpro: playerName}, {$set:{drafted: false}});
         CurrentPick.update({}, {$inc:{'pick':-1}});
