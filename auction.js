@@ -580,8 +580,8 @@ Meteor.methods({
         }
         var keepers = Keepers.findOne({"captain":team.captain}).keepers;
         var keeperMoneyOnThisBid = 0;
-        if(keepers.indexOf(playerWon) >= 0) {
-              console.log(playerWon, " is a keeper!");
+        if(keepers.indexOf(playerName) >= 0) {
+              console.log(playerName, " is a keeper!");
               var keeperMoneyOnThisBid = Math.min(cost, maxKeeperMoneyOnOneBid);
               cost = cost - keeperMoneyOnThisBid;
         }
