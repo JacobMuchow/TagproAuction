@@ -29,6 +29,7 @@ var minimumBid = 0;
 var maxNominations = 400;
 var numberOfNominators = 15;
 var auctionExpiryDate = 0; // a lower bound on the auction expiry date
+var maxKeeperMoneyOnOneBid = 5;
 
 
 
@@ -306,7 +307,7 @@ if (Meteor.isClient) {
     sufficientFunds: function() {
       if(Meteor.user() !== undefined && AuctionData.findOne({})) {
         var team = TeamNames.findOne({"captain":Meteor.user().username});
-        var balance = parseInt(team.money);
+        var balance = parseInt(team.money) + parseInt(Math.min(team.keepermoney, maxKeeperMoneyOnOneBid));
         //console.log(team, keepers, balance);
         //console.log(Meteor.user().username);
         //console.log("Current balance w/o keeper: ", balance);
@@ -328,7 +329,7 @@ if (Meteor.isClient) {
         var bids = [];
         var currentBid = parseInt(AuctionData.findOne({}).currentBid);
         var team = TeamNames.findOne({"captain":Meteor.user().username});
-        money = parseInt(team.money) + parseInt(team.keepermoney);
+        money = parseInt(team.money) + parseInt(Math.min(team.keepermoney, maxKeeperMoneyOnOneBid));
         console.log(Meteor.user().username, " has ", money);
         if(currentBid+1 <= money) {
           bids.push({'bid':currentBid+1});
@@ -677,7 +678,7 @@ Meteor.methods({
             }
             var money = team.money;
             if(Meteor.call("isKeeper", state.Nominator, playerNominated)) {
-              money = team.money + team.keepermoney;
+              money = team.money + Math.min(team.keepermoney, maxKeeperMoneyOnOneBid);
             }
             if(money < parseInt(bid)) {
              return false;
@@ -736,12 +737,9 @@ Meteor.methods({
 
             if(keepers.indexOf(playerWon) >= 0) {
               console.log(playerWon, " is a keeper!");
-              keepermoney = keepermoney - state.currentBid;
-
-              if(keepermoney < 0) {
-                money = money - Math.abs(keepermoney);
-                keepermoney = 0;
-              }
+              var keeperMoneyOnThisBid = Math.min(state.currentBid, maxKeeperMoneyOnOneBid);
+              keepermoney = keepermoney - keeperMoneyOnThisBid;
+              money = money - (state.currentBid - keeperMoneyOnThisBid);
             }
             else {
               money = money - state.currentBid;
@@ -841,7 +839,7 @@ Meteor.methods({
         team = TeamNames.findOne({captain:bidder});
         var availablebidamt = parseInt(team.money);
         if(Meteor.call("isKeeper", bidder, state.currentPlayer)) {
-          availablebidamt += parseInt(team.keepermoney);
+          availablebidamt += parseInt(Math.min(team.keepermoney, maxKeeperMoneyOnOneBid));
         }
 
         if(parseInt(amount) <= parseInt(availablebidamt)) {
