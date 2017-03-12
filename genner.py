@@ -2,18 +2,22 @@ import json
 
 
 ## Edit these then run the script to generate the data you need
-captains = [
-("NewCompte", "Ballis Saint-Germain", "ELTP", 0),
-("orb", "TagPro Rangers", "ELTP", 0),
+captains = [ 
+("CB13", "Liberty Caps", "East", 0),
+("Intercest", "Boostin Dynamo", "East", 0),
+("LEBRON*JAMES", "MEME*TEAM", "East", 0),
+("Mr.Hat", "Boats 'n' Holds", "West", 0),
+("toasty.", "Orlando Roller Bears", "East", 0)
 ]
 
 managers = [
-("Battosay", "Angers SCO", "ELTP", 0, "first-player"),
-("failed", "failed's heroes", "ELTP", 0, "first-player"),
-("Ruud", "FC Jukerecht", "ELTP", 0, "first-player"),
-("Atypop", "Popsford Jukenited", "ELTP", 0, "first-player"),
-("Chuck_Finley", "Stand-On-Re de Liege", "ELTP", 0, "first-player"),
-("AlHarrington", "Turun Balloseura", "ELTP", 0, "first-player"), 
+("Catalyst", "Degrees of Freedom", "East", 0, "Bal McCartny"),
+("Tiger", "ThunderCaps", "East", 0, "Abe Lincoln"),
+("KateEarl, MD", "Buzzing Scoring Epidemics", "West", 0, "Milky"),
+("ccga4", "Tears", "West", 0, "Spjork"),
+("Ferret", "Merballs", "West", 0, "Bright"),
+("Eggo", "Holdin' Gate Wariors", "West", 0, "Ball God"),
+("fxu", "The Aristocaps", "West", 0, "dywz")
 ]
 
 starting_money = 100
