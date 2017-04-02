@@ -11,7 +11,7 @@ captains = [
  
 managers = [
 ("Raylan", "Blocka Juniors", "ELTP", 0, "Nube"),
-("Chuck_Finley", "Stand-On-Re de Liège", "ELTP", 0, "Sea."),
+("Chuck_Finley", "Stand-On-Re de Liege", "ELTP", 0, "Sea."),
 ("schwenks", "Tagenham and Rektbridge", "ELTP", 0, "Hyponome"),
 ("NZ.", "The Ball Blacks", "ELTP", 0, "Berlin Ball"),
 ]
