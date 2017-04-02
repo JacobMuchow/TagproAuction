@@ -434,8 +434,9 @@ if (Meteor.isClient) {
       return Messages.find({}, {sort: {createdAt: -1}, limit:parseInt(limit)});
     },
     admin : function() {
-      if(Meteor.user() !== undefined) {
-        if(admins.indexOf(Meteor.user().username) >= 0) {
+      var user = Meteor.user();
+      if(user) {
+        if(admins.indexOf(user.username) >= 0) {
           return true;
         }
       }
