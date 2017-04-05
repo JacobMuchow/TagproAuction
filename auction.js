@@ -248,10 +248,16 @@ if (Meteor.isClient) {
       return options[idx];
     },
     nextNominator: function() {
-      var nextorder = Nominators.findOne({"name":"nextInOrder"}).nextorder;
-      var nextNominator = Nominators.findOne({"order":nextorder}).name;
-      //console.log
-      return nextNominator;
+      var nextInOrderObject = Nominators.findOne({"name":"nextInOrder"});
+      if (nextInOrderObject) {
+        var nextorder = Nominators.findOne({"name":"nextInOrder"}).nextorder;
+        var nextNominator = Nominators.findOne({"order":nextorder}).name;
+        //console.log
+        return nextNominator;
+      }
+      else {
+        return "no one";
+      }
     }
   });
 
