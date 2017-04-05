@@ -11,7 +11,7 @@ managers = [
 ("Sensei Osy", "Ball Street", "ENLTP", 0, ""),
 ("Ballkenende", "Ballmere City", "ENLTP", 0, ""),
 ("Vjeze", "TC Ballieveldert", "ENLTP", 0, ""),
-("rickastley", "AC Spartag", "ELTP", 0, ""),
+("rickastley", "AC Spartag", "ENLTP", 0, ""),
 ]
 
 starting_money = 100
