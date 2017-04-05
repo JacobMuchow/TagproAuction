@@ -563,7 +563,7 @@ Meteor.methods({
     return false;
   },
   undoNomination : function(person) {
-    if(Meteor.isServer) {
+    if(Meteor.isServer && Meteor.call("isAdmin")) {
         var ad = AuctionData.findOne({});
         if(ad.Nominator !== undefined) {
           nominator = ad.Nominator;
@@ -575,7 +575,7 @@ Meteor.methods({
     }
   },
   removePlayer: function(person, playerName) {
-    if(Meteor.isServer) {
+    if(Meteor.isServer && Meteor.call("isAdmin")) {
         if (!playerName) {
             var text = person + ", pls choose a player before clicking the Remove Player button.";
             Meteor.call("insertMessage", text, new Date());
@@ -618,7 +618,7 @@ Meteor.methods({
     }
   },
   removeLastBid : function(person) {
-    if(Meteor.isServer) {
+    if(Meteor.isServer && Meteor.call("isAdmin")) {
       auctionState = AuctionStatus.find({}).state;
       if(auctionState !== "Paused") {
         var currentState = AuctionData.findOne();
@@ -635,7 +635,7 @@ Meteor.methods({
     }
   },
   resumeAuction : function (person) {
-    if(Meteor.isServer) {
+    if(Meteor.isServer && Meteor.call("isAdmin")) {
         console.log("Resuming auction");
         // Make it so you can't resume from nominating state
         if(AuctionData.findOne({State:"Nominating"}) !== undefined) {
@@ -654,7 +654,7 @@ Meteor.methods({
     }
   },
   pauseAuction : function(person) {
-    if(Meteor.isServer) {
+    if(Meteor.isServer && Meteor.call("isAdmin")) {
         console.log("Pausing auction");
         var ad = AuctionData.findOne();
         var secondsLeft = ad.nextExpiryDate - new Date().getTime();
@@ -667,7 +667,7 @@ Meteor.methods({
     }
   },
   startAuction: function(person) {
-    if(Meteor.isServer) {
+    if(Meteor.isServer && Meteor.call("isAdmin")) {
         console.log("Starting auction");
         Meteor.call("insertMessage", "Auction started by "+person, new Date(), "started");
         var nominator = Meteor.call('pickNominator');
