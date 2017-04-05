@@ -371,6 +371,9 @@ if (Meteor.isClient) {
     'click .undo-nomination' : function(event) {
       Meteor.call("undoNomination", Meteor.user().username);
     },
+    'click .renew-data' : function(event) {
+      Meteor.call("renewData", Meteor.user().username);
+    },
     'click .remove-player' : function(event) {
       var name = document.getElementById("adminPlayerSearch").value;
       Meteor.call("removePlayer", Meteor.user().username, name);
@@ -939,94 +942,7 @@ if (Meteor.isServer) {
     AuctionLock.insert({"locked":0});
 
     if(renewData) {
-
-      TeamNames.remove({});
-      var teamnames = {};
-      teamnames = JSON.parse(Assets.getText('teamnames.json'));
-      for(i = 0; i < teamnames.length; i++) {
-        var obj = teamnames[i];
-        TeamNames.insert(obj);
-      }
-
-      Divisions.remove({});
-      var divisions = {};
-      divisions = JSON.parse(Assets.getText('divisions.json'));
-      for(i = 0; i < divisions.length; i++) {
-        var obj = divisions[i];
-        Divisions.insert(obj);
-      }
-
-      TeamData.remove({});
-      //Messages.remove({});
-      Nominators.remove({});
-      Keepers.remove({});
-      CurrentPick.remove({});
-      PausedAuction.remove({});
-      CurrentPick.insert({"pick":1});
-      BidHistory.remove({});
-
-      // load player data
-      PlayerResponse.remove({});
-      var playerResponseData = JSON.parse(Assets.getText('player_response.json'));
-      for(i = 0; i < playerResponseData.length; i++) {
-        var obj = playerResponseData[i];
-        PlayerResponse.insert(obj);
-      }
-      // Load Nominators
-      var initialRosterData = {};
-      initialRosterData = JSON.parse(Assets.getText('nominations.json'));
-      for(i = 0; i < initialRosterData.length; i++) {
-        var obj = initialRosterData[i];
-        Nominators.insert(obj);
-      }
-
-
-      // Fischer-Yates shuffle
-      var shuffle = function(array) {
-        var currentIndex = array.length, temporaryValue, randomIndex ;
-
-        // While there remain elements to shuffle...
-        while (0 !== currentIndex) {
-
-          // Pick a remaining element...
-          randomIndex = Math.floor(Math.random() * currentIndex);
-          currentIndex -= 1;
-
-          // And swap it with the current element.
-          temporaryValue = array[currentIndex];
-          array[currentIndex] = array[randomIndex];
-          array[randomIndex] = temporaryValue;
-        }
-
-        return array;
-      }
-
-      // Set nomination order
-      var captains = Nominators.find({"order":-1}).fetch();
-      captains = shuffle(captains);
-      for(var i = 0; i < captains.length; i++) {
-        Nominators.update({"name":captains[i].name}, {$set: {"order": i}});
-      }
-
-
-      keepers = JSON.parse(Assets.getText('keepers.json'));
-      for(i = 0; i < keepers.length; i++) {
-        var obj = keepers[i];
-        Keepers.insert(obj);
-      }
-
-      initialRosterData = JSON.parse(Assets.getText('teams.json'));
-      for(i = 0; i < initialRosterData.length; i++) {
-        var obj = initialRosterData[i];
-        TeamData.insert(obj);
-      }
-
-      PlayerResponse.update({}, {$set:{"drafted":false}}, {multi:true});
-      drafted = TeamData.find({"name":{$ne:""}}).fetch();
-      for(var x=0; x<drafted.length; x++) {
-        PlayerResponse.update({tagpro:drafted[x].name}, {$set:{drafted:true}});
-      }
-
+        Meteor.call("renewData");
     }
 
     if (createDataSnake) {
@@ -1105,6 +1021,98 @@ if (Meteor.isServer) {
       var text = nextNominator.name +" is nominating after "+ captain.name;
       Meteor.call("insertMessage", text, new Date(), "nextNominator");
       return captain;
+    },
+    renewData: function (username) {
+      
+      Meteor.call("insertMessage", "The auction has been reset by the admin " + (username || "meteor itself"), new Date());
+      TeamNames.remove({});
+      var teamnames = {};
+      teamnames = JSON.parse(Assets.getText('teamnames.json'));
+      for(i = 0; i < teamnames.length; i++) {
+        var obj = teamnames[i];
+        TeamNames.insert(obj);
+      }
+
+      Divisions.remove({});
+      var divisions = {};
+      divisions = JSON.parse(Assets.getText('divisions.json'));
+      for(i = 0; i < divisions.length; i++) {
+        var obj = divisions[i];
+        Divisions.insert(obj);
+      }
+
+      TeamData.remove({});
+      //Messages.remove({});
+      Nominators.remove({});
+      Keepers.remove({});
+      CurrentPick.remove({});
+      PausedAuction.remove({});
+      CurrentPick.insert({"pick":1});
+      BidHistory.remove({});
+
+      // load player data
+      PlayerResponse.remove({});
+      var playerResponseData = JSON.parse(Assets.getText('player_response.json'));
+      for(i = 0; i < playerResponseData.length; i++) {
+        var obj = playerResponseData[i];
+        PlayerResponse.insert(obj);
+      }
+      // Load Nominators
+      var initialRosterData = {};
+      initialRosterData = JSON.parse(Assets.getText('nominations.json'));
+      for(i = 0; i < initialRosterData.length; i++) {
+        var obj = initialRosterData[i];
+        Nominators.insert(obj);
+      }
+
+
+      // Fischer-Yates shuffle
+      var shuffle = function(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex ;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+
+          // Pick a remaining element...
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
+
+          // And swap it with the current element.
+          temporaryValue = array[currentIndex];
+          array[currentIndex] = array[randomIndex];
+          array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+      }
+
+      // Set nomination order
+      var captains = Nominators.find({"order":-1}).fetch();
+      captains = shuffle(captains);
+      for(var i = 0; i < captains.length; i++) {
+        Nominators.update({"name":captains[i].name}, {$set: {"order": i}});
+      }
+
+
+      var keepers = JSON.parse(Assets.getText('keepers.json'));
+      for(i = 0; i < keepers.length; i++) {
+        var obj = keepers[i];
+        Keepers.insert(obj);
+      }
+
+      var initialRosterData = JSON.parse(Assets.getText('teams.json'));
+      for(i = 0; i < initialRosterData.length; i++) {
+        var obj = initialRosterData[i];
+        TeamData.insert(obj);
+      }
+
+      PlayerResponse.update({}, {$set:{"drafted":false}}, {multi:true});
+      var drafted = TeamData.find({"name":{$ne:""}}).fetch();
+      for(var x=0; x<drafted.length; x++) {
+        PlayerResponse.update({tagpro:drafted[x].name}, {$set:{drafted:true}});
+      }
+
     }
   });
+
 }
