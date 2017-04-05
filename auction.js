@@ -1040,7 +1040,7 @@ if (Meteor.isServer) {
     renewData: function () {
       if(Meteor.isServer && Meteor.call("isAdmin")) {
         var admin = Meteor.user();
-        Meteor.call("insertMessage", "The auction has been reset by the admin " + (admin ? admin.username || "meteor itself"), new Date());
+        Meteor.call("insertMessage", "The auction has been reset by the admin " + (admin ? admin.username : "meteor itself"), new Date());
         TeamNames.remove({});
         var teamnames = {};
         teamnames = JSON.parse(Assets.getText('teamnames.json'));
