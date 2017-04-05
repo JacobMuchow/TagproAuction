@@ -172,7 +172,7 @@ if (Meteor.isClient) {
             //Meteor.call("checkForToggle");
           }
           else {
-            formattedSeconds = String(secsLeft)
+            var formattedSeconds = String(secsLeft)
             if(parseInt(secsLeft) == secsLeft) {
               formattedSeconds += ".0";
             }
@@ -189,8 +189,8 @@ if (Meteor.isClient) {
     },
     personBeingBidOn : function() {
       if(AuctionData.findOne({}) !== undefined) {
-        name = AuctionData.findOne({}).currentPlayer;
-        currentPlayerInfo = PlayerResponse.findOne({"tagpro":name});
+        var name = AuctionData.findOne({}).currentPlayer;
+        var currentPlayerInfo = PlayerResponse.findOne({"tagpro":name});
         return name;
       }
     },
@@ -209,7 +209,7 @@ if (Meteor.isClient) {
     },
     isNominationTime: function() {
       if(AuctionData.findOne({}) !== undefined) {
-        auction_state = AuctionData.findOne({}).State;
+        var auction_state = AuctionData.findOne({}).State;
         Session.set("nominationTime",  auction_state == "Nominating");
         return auction_state == "Nominating";
       }
@@ -218,8 +218,8 @@ if (Meteor.isClient) {
       if(!Meteor.userId())
         return false;
       if(AuctionData.findOne({}) !== undefined) {
-        nominator = AuctionData.findOne({}).Nominator;
-        myNomination = Meteor.user().username == nominator;
+        var nominator = AuctionData.findOne({}).Nominator;
+        var myNomination = Meteor.user().username == nominator;
         if(myNomination) {
           Session.set("playSound", "myNomination");
         }
@@ -229,13 +229,13 @@ if (Meteor.isClient) {
     },
     auctionPaused : function() {
       if(AuctionStatus.findOne({}) !== undefined) {
-        status = AuctionStatus.findOne({}).status;
+        var status = AuctionStatus.findOne({}).status;
         return (status == "Paused" || status == "Not Started");
       }
     },
     auctionMessage: function() {
       if(AuctionStatus.findOne({}) !== undefined) {
-        status = AuctionStatus.findOne({}).status;
+        var status = AuctionStatus.findOne({}).status;
         if(status == "Paused")
           return "Auction is paused"
         else
@@ -243,12 +243,12 @@ if (Meteor.isClient) {
       }
     },
     getsnarkymessage: function() {
-      options = ["Hurry it up ", "We don't have all day, ", "Waiting on you ", "Getting old here, ", "Take your time ", "No rush ", "C'mon ", "Need some help "]
-      idx = Math.floor(Math.random() * options.length)
+      var options = ["Hurry it up ", "We don't have all day, ", "Waiting on you ", "Getting old here, ", "Take your time ", "No rush ", "C'mon ", "Need some help "]
+      var idx = Math.floor(Math.random() * options.length)
       return options[idx];
     },
     nextNominator: function() {
-      nextorder = Nominators.findOne({"name":"nextInOrder"}).nextorder;
+      var nextorder = Nominators.findOne({"name":"nextInOrder"}).nextorder;
       var nextNominator = Nominators.findOne({"order":nextorder}).name;
       //console.log
       return nextNominator;
