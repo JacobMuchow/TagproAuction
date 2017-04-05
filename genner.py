@@ -16,7 +16,7 @@ managers = [
 
 starting_money = 100
 keeper_money = 0
-team_size = 5
+team_size = 4
  
 keepers = False
 nominations = [{"name" : "nextInOrder", "nextorder" : 0}]
