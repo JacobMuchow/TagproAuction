@@ -372,7 +372,16 @@ if (Meteor.isClient) {
       Meteor.call("undoNomination", Meteor.user().username);
     },
     'click .renew-data' : function(event) {
-      Meteor.call("renewData", Meteor.user().username);
+      var username = Meteor.user().username;
+      if (confirm("Are you sure you want to reset data?")) {
+        Meteor.call("insertMessage", username + " is sure of wanting to reset data.", new Date());
+        if (confirm("Are you really sure you want to reset data?")) {
+          Meteor.call("insertMessage", username + " is really sure of wanting to reset data.", new Date());
+          if (confirm("Are you really really sure you want to reset data?")) {
+            Meteor.call("renewData", username);
+          }
+        }
+      }
     },
     'click .remove-player' : function(event) {
       var name = document.getElementById("adminPlayerSearch").value;
