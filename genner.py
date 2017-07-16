@@ -3,46 +3,50 @@ import json
 
 ## Edit these then run the script to generate the data you need
 captains = [
-("Ruff", "Plymouth Artyle", "ENLTP", -30),
+("AlHarrington", "Åball IFK", "ECLTP", 0, 0, []),
+("Battosay", "Team Battosay", "ECLTP", 0, 0, []),
+("GrammarJew", "Peräsuolijoen Palloilijat", "ECLTP", 0, 0, []),
+("Sea.", "Celtag Vigo", "ECLTP", 0, 0, []),
+("Sensei Osy", "Ball Street", "ECLTP", 0, 0, []),
+("MrSaggyBalls", "BSC Young Balls", "ECLTP", 0, 0, []),
 ]
  
 managers = [
-("Jerry", "Turtle Cobras", "ENLTP", 0, ""),
-("Sensei Osy", "Ball Street", "ENLTP", 0, ""),
-("Ballkenende", "Ballmere City", "ENLTP", 0, ""),
-("Vjeze", "TC Ballieveldert", "ENLTP", 0, ""),
-("rickastley", "AC Spartag", "ENLTP", 0, ""),
+("bhayward2000", "Chasterfield FC", "ECLTP", 0, 0, [], "Sherrattinho"),
+("Ballkenende", "Ballmere City", "ECLTP", 0, 0, [], "kutrebar"),
+("Unplanned", "unny's Flagettis", "ECLTP", 0, 0, [], "ethce"),
+("rickastley", "RickRollers", "ECLTP", 0, 0, [], "Nube"),
 ]
 
 starting_money = 100
 keeper_money = 0
 team_size = 4
- 
+
 keepers = False
 nominations = [{"name" : "nextInOrder", "nextorder" : 0}]
 team_names = []
 keepers = []
 teams = []
 for index, data in enumerate(captains):
-    captain, team_name, division, additional_money = data
+    captain, team_name, division, additional_money, additional_keeper_money, team_keepers = data
     nominations.append({"name" : captain, "rosterfull" : False, "order" : -1})
-    team_names.append({"teamname":team_name, "division" : division, "money" : starting_money + additional_money, "keepermoney": keeper_money, "captain":captain, "numrosterspots":team_size, "count":1, "order":(len(team_names) + 1)})
+    team_names.append({"teamname":team_name, "division" : division, "money" : starting_money + additional_money, "keepermoney": keeper_money + additional_keeper_money, "captain":captain, "numrosterspots":team_size, "count":1, "order":(len(team_names) + 1)})
     teams.append({"name" : captain, "captain":True, "order" : 1, "cost" : 0, "division" : division, "teamname" : team_name })
     for x in range(2, team_size+1):
         teams.append({"name":"", "order" : x, "cost" : 0, "division" : division, "teamname" : team_name })
-    keepers.append({"captain" : captain, "keepers":[]})
+    keepers.append({"captain" : captain, "keepers":team_keepers})
  
 for index, data in enumerate(managers):
-    captain, team_name, division, additional_money, first_player = data
+    captain, team_name, division, additional_money, additional_keeper_money, team_keepers, first_player = data
     count = 0
     nominations.append({"name" : captain, "rosterfull" : False, "order" : -1})
     if first_player:
         teams.append({"name" : first_player, "cocaptain":True, "order" : 1, "cost" : 0, "division" : division, "teamname" : team_name })
         count = count + 1
-    team_names.append({"teamname":team_name, "division" : division, "money" : starting_money + additional_money, "keepermoney": keeper_money, "captain":captain, "numrosterspots":team_size, "count":count, "order":(len(team_names) + 1)})
+    team_names.append({"teamname":team_name, "division" : division, "money" : starting_money + additional_money, "keepermoney": keeper_money + additional_keeper_money, "captain":captain, "numrosterspots":team_size, "count":count, "order":(len(team_names) + 1)})
     for x in range(count+1, team_size+1):
         teams.append({"name":"", "order" : x, "cost" : 0, "division" : division, "teamname" : team_name })
-    keepers.append({"captain" : captain, "keepers":[]})
+    keepers.append({"captain" : captain, "keepers":team_keepers})
  
 division_names = set(c[2] for c in captains) | set(m[2] for m in managers)
 divisions = []
