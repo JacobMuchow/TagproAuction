@@ -6,7 +6,7 @@ import json
 ## Edit these then run the script to generate the data you need
 captains = [
 ("AlHarrington", "Åball IFK", "ECLTP", 0, 5, ["MagicPigeon", "The Real IRS", "NewCompte", "Jim Jimson", "Player", "sweatypete", "-Jacob-", "Irish_Jesus", "SunnyMojo", "MonteCristo", "Harmony", "Fuzzy", "KBreezy" ]),
-("Battosay", "Team Battosay", "ECLTP", 0, 0, ["Dyballa", "piggeh", "Nice", "katazei", "juke' em all", "Electroball", "LoweJ", "some banter", "Daffodil", "Button", "Mathi Oi"]),
+("Battosay", "Roll Madrid", "ECLTP", 0, 0, ["Dyballa", "piggeh", "Nice", "katazei", "juke' em all", "Electroball", "LoweJ", "some banter", "Daffodil", "Button", "Mathi Oi"]),
 ("GrammarJew", "Peräsuolijoen Palloilijat", "ECLTP", 0, 0, ["MagicPigeon", "The Real IRS", "NewCompte", "Jim Jimson", "Player", "sweatypete", "-Jacob-", "Irish_Jesus", "SunnyMojo", "MonteCristo", "Harmony", "Fuzzy", "KBreezy"]),
 ("Sea.", "Celtag Vigo", "ECLTP", 0, 0, ["Jerry.", "Chuck_Finley", "zeeres", "n00b", "Sunny", "Huck and D", "anime addict", "J Belfort", "Squirrely", "dodsfall", "Nuts!", "Juke Dough", "phoenixx", "ParvoB19"]),
 ("Sensei Osy", "Ball Street", "ECLTP", 0, 0, ["Muccy", "Poukie", "Vincent Osy", "wowah", "Caro-Kann", "Wait", "ElMiracle", "Rojale", "B.Fraser", "JasonGenova.", "Bouh!", "themagpie"]),
