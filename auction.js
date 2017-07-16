@@ -26,6 +26,7 @@ var additionTime = 10000;
 var lock = 0;
 var bidTimeout = 0;
 var minimumBid = 0;
+var maximumBid = 100;
 var maxNominations = 400;
 var numberOfNominators = 15;
 var auctionExpiryDate = 0; // a lower bound on the auction expiry date
@@ -433,6 +434,9 @@ if (Meteor.isClient) {
       var bid = parseInt(event.target.amount.value);
       if(!bid || bid < minimumBid) {
         bid = minimumBid;
+      }
+      if(bid > maximumBid) {
+        bid = maximumBid;
       }
       Meteor.call("nominatePlayer", player, bid);
       return false;
@@ -868,7 +872,7 @@ Meteor.methods({
           availablebidamt += parseInt(Math.min(team.keepermoney, maxKeeperMoneyOnOneBid));
         }
 
-        if(parseInt(amount) <= parseInt(availablebidamt)) {
+        if(parseInt(amount) <= parseInt(availablebidamt) && parseInt(amount) <= maximumBid) {
           // Cool, he does. Is it in time?
           console.log("acceptBid: good amount");
           // I can't bid when the time is still valid, this fixes it
