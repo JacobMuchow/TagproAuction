@@ -14,7 +14,7 @@ captains = [
 ]
 
 managers = [
-("bhayward2000", "Chasterfield FC", "ECLTP", 0, 0, ["Osy", "Heisy", "Ruud", "Sisu", "The Juker", "Koekjes", "Vjeze", "LotsO'Huggin", "ruff", "Troupee", "EASHY", "Bustaball", "Ball Grylls"], "Sherrattinho"),
+("bhayward2000", "Chaseterfield FC", "ECLTP", 0, 0, ["Osy", "Heisy", "Ruud", "Sisu", "The Juker", "Koekjes", "Vjeze", "LotsO'Huggin", "ruff", "Troupee", "EASHY", "Bustaball", "Ball Grylls"], "Sherrattinho"),
 ("Ballkenende", "Ballmere City", "ECLTP", 0, 5, ["Green", "Strategio", "Ballkenende", "weisbrot", "Nayr", "Sam4096", "Testi", "Jolt", "alchemist", "ALCAEUS", "Gummi", "Such A Nerd", "GrabMachine", "Triple A"], "kutrebar"),
 ("Unplanned", "unny's Flagettis", "ECLTP", 0, 0, ["Sam-", "unvrs", "MikeC", "Bezeball", "Wu", "MoGGee", "schwenks", "Muzza", "Tagnoob", "Kodiak", "EphewSeaKay", "Nooga"], "ethce"),
 ("rickastley", "RickRollers", "ECLTP", 0, 5, ["Muccy", "Poukie", "Vincent Osy", "wowah", "Caro-Kann", "Wait", "ElMiracle", "Rojale", "B.Fraser", "JasonGenova.", "Bouh!", "themagpie"], "Nube"),
