@@ -5,17 +5,17 @@ import json
 
 ## Edit these then run the script to generate the data you need
 captains = [
-("Ballkenende", "Ballmere City", "ELTP", 10, 0, ["Berlin Ball",  "mP",   "4am",  "zeeres",   "lume", "Ballkenende",  "Evuelf",   "teoretyczny",  "NZ.",  "dodsfall"]),
-("Jerry.", "Celtag Vigo", "ELTP", 15, 0, ["kutrebar",    "ethce",    "gofio",    "Jim Jimson",   "Jerry.",   "Umor", "Sam4096",  "Heisy",    "Vjeze",    "ClutchHunter"]),
-("ethce", "FC Capoli", "ELTP", 0, 0, ["kutrebar",   "ethce",    "gofio",    "Jim Jimson",   "Jerry.",   "Umor", "Sam4096",  "Heisy",    "Vjeze",    "ClutchHunter"]),
-("Chuck_Finley", "Stand-On-Re de Liège", "ELTP", 10, 5, ["Sea.",    "Nilus",    "okthen",   "piggeh",   "GrammarJew",   "Chuck_Finley", "Dor",  "Huck and D",   "Nice", "TheBob18"]),
+("Ballkenende", "Ballmere City", "ELTP", 10, 0, ["Berlin Ball",	"mP",	"4am",	"zeeres",	"lume",	"Ballkenende",	"Evuelf",	"teoretyczny",	"NZ.",	"dodsfall"]),
+("Jerry.", "Celtag Vigo", "ELTP", 15, 0, ["kutrebar",	"ethce", "Nilus",	"gofio",	"Jim Jimson",	"Jerry.",	"Umor",	"Sam4096",	"Heisy",	"Threek",	"ClutchHunter"]),
+("ethce", "FC Capoli", "ELTP", 0, 0, ["kutrebar",	"ethce",	"gofio",	"Jim Jimson",	"Jerry.",	"Umor",	"Sam4096",	"Heisy",	"Threek",	"ClutchHunter"]),
+("Chuck_Finley", "Stand-On-Re de Liège", "ELTP", 10, 5, ["Sea.",	"Nilus", "Heisy",	"okthen",	"piggeh",	"GrammarJew",	"Chuck_Finley",	"Dor",	"Huck and D",	"Nice",	"TheBob18"]),
 ]
 
 managers = [
-("Raylan", "Blocka Juniors", "ELTP", 0, 5, ["Nube", "Green",    "Sensei Osy",   "Battosay", "Poukie",   "Sanitence",    "Rob Flagetti", "NoctiZ",   "Vincent Osy",  "Raylan"], "Green"),
-("bhayward2000", "Chaseterfield FC", "ELTP", 0, 0, ["Osy",  "SIGSEGV",  "anom", "EASHY",    "WishICared",   "Nayr", "The Juker",    "Young Savage", "anime.addict", "DEAD NAN"], "DEAD NAN"),
-("damn, son!", "Momentum", "ELTP", 10, 0, ["Hyponome",   "nub",  "Strategio",    "unvrs",    "failed",   "MrSaggyBalls", "Bezeball", "damn, son!",   "Voodoo",   "Schwenks"], "AlHarrington"),
-("rickastley", "The Rickrollers", "ELTP", 0, 0, ["Mpuddi",  "Booya Ball",   "dets", "DaEvil1",  "Fred_",    "Ronding",  "edvard41298",  "rickastley",   "Unplanned",    "wowah"], "Dyballa"),
+("Raylan", "Blocka Juniors", "ELTP", 0, 5, ["Nube",	"Green",	"Sensei Osy",	"Battosay",	"Poukie", "Sisu",	"Sanitence",	"Rob Flagetti",	"NoctiZ",	"Vincent Osy",	"Raylan"], "Green"),
+("bhayward2000", "Chaseterfield FC", "ELTP", 0, 0, ["Osy",	"SIGSEGV",	"anom",	"EASHY",	"WishICared",	"Nayr",	"The Juker",	"Young Savage",	"bhayward3000",	"DEAD NAN"], "DEAD NAN"),
+("damn, son!", "Momentum", "ELTP", 10, 0, ["Hyponome",	"Swerve", "nub",	"Strategio",	"unvrs",	"failed",	"MrSaggyBalls",	"Bezeball",	"damn, son!",	"Voodoo",	"Schwenks"], "AlHarrington"),
+("rickastley", "The Rickrollers", "ELTP", 0, 0, ["Mpuddi",	"Booya Ball",	"dets",	"DaEvil1",	"Fred_", "MikeC",	"Ronding",	"edvard41298",	"rickastley",	"Unplanned",	"wowah"], "Dyballa"),
 ]
 
 starting_money = 100
