@@ -1,4 +1,4 @@
-admins = ["Admin1", "Admin2", "Admin3", "NewCompte"];
+admins = ["Carbon", "NZ.", "NewCompte"];
 
 
 
