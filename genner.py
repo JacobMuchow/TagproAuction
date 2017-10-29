@@ -1,21 +1,38 @@
 # -*- coding: utf-8 -*-
 
+
 import json
 
 
 ## Edit these then run the script to generate the data you need
 captains = [
-("Ballkenende", "Ballmere City", "ELTP", 10, 0, ["Berlin Ball",	"mP",	"4am",	"zeeres",	"lume",	"Ballkenende",	"Evuelf",	"teoretyczny",	"NZ.",	"dodsfall"]),
-("Jerry.", "Celtag Vigo", "ELTP", 15, 0, ["kutrebar",	"ethce", "Nilus",	"gofio",	"Jim Jimson",	"Jerry.",	"Umor",	"Sam4096",	"Heisy",	"Threek",	"ClutchHunter"]),
-("ethce", "FC Capoli", "ELTP", 0, 0, ["kutrebar",	"ethce",	"gofio",	"Jim Jimson",	"Jerry.",	"Umor",	"Sam4096",	"Heisy",	"Threek",	"ClutchHunter"]),
-("Chuck_Finley", "Stand-On-Re de Liège", "ELTP", 10, 5, ["Sea.",	"Nilus", "Heisy",	"okthen",	"piggeh",	"GrammarJew",	"Chuck_Finley",	"Dor",	"Huck and D",	"Nice",	"TheBob18"]),
+    ("intercest", "Boostin Dynamo", "Northeast", 0, 0, ["Stann", "Gasol", "waterwheel", "Wavey", "ZenWhisper"]),
+    ("protag", "Ghostboosters", "Northeast", 0, 0, []),
+    ("Gem", "Someballian Pirates", "Northeast", 5, 0, []),
+    # Lowej manager
+
+    ("C Bivvey", "Whitecaps", "East", 0, 0, []),
+    ("MEX", "A Blockwork Orange", "East", 5, 0, []),
+    # Tantrew manager
+    ("aardvark", "21 Juke Street", "East", 0, 0, []),
+
+    # Ron Hextball manager
+    ("eee", "The RePublicans", "Southeast", 15, 0, []),
+    # JDoeMonopoly manager
+    ("dodsfall", "A Developmental Lad", "Southeast", 0, 0, []),
+
+    ("Bamboozler", "877CAPSNOW", "West", 5, 0, []),
+    ("Warriors", "Centra of Attention", "West", 0, 0, []),
+    ("yank", "Tears", "West", 0, 0, ["BigBird", "Belle", "Curry", "glide", "Hawaii", "WhatNotToDo"]),
+    # fender manager
 ]
 
 managers = [
-("Raylan", "Blocka Juniors", "ELTP", 0, 5, ["Nube",	"Green",	"Sensei Osy",	"Battosay",	"Poukie", "Sisu",	"Sanitence",	"Rob Flagetti",	"NoctiZ",	"Vincent Osy",	"Raylan"], "Green"),
-("bhayward2000", "Chaseterfield FC", "ELTP", 0, 0, ["Osy",	"SIGSEGV",	"anom",	"EASHY",	"WishICared",	"Nayr",	"The Juker",	"Young Savage",	"bhayward3000",	"DEAD NAN"], "DEAD NAN"),
-("damn, son!", "Momentum", "ELTP", 10, 0, ["Hyponome",	"Swerve", "nub",	"Strategio",	"unvrs",	"failed",	"MrSaggyBalls",	"Bezeball",	"damn, son!",	"Voodoo",	"Schwenks"], "AlHarrington"),
-("rickastley", "The Rickrollers", "ELTP", 0, 0, ["Mpuddi",	"Booya Ball",	"dets",	"DaEvil1",	"Fred_", "MikeC",	"Ronding",	"edvard41298",	"rickastley",	"Unplanned",	"wowah"], "Dyballa"),
+    ("Lowej", "London WASDs", "Northeast", 0, 0, [], "Arbybear"),
+    ("Tantrew", "Red Hot Chili Poppers", "East", 0, 0, ["Eashy", "Frozen", "danisk"], "Destar"),
+    ("Ron Hextball", "TC Jukes", "Southeast", 15, 0, [], "Ty"),
+    ("JDoeMonopoly", "Pequeños Pandas", "Southeast", 15, 0, [], "Veezy"),
+    ("fender", "Rollin' Golden Boulders", "West", 0, 0, [], "Iblis")
 ]
 
 starting_money = 100
