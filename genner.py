@@ -19,7 +19,7 @@ captains = [
     # Ron Hextball manager
     ("eee", "The RePublicans", "Southeast", 15, 0, []),
     # JDoeMonopoly manager
-    ("dodsfall", "A Developmental Lad", "Southeast", 0, 0, []),
+    ("Ball God", "Chase Jam", "Southeast", 0, 0, []),
 
     ("Bamboozler", "877CAPSNOW", "West", 5, 0, []),
     ("Warriors", "Centra of Attention", "West", 0, 0, []),
