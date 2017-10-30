@@ -29,7 +29,7 @@ captains = [
 
 managers = [
     ("Lowej", "London WASDs", "Northeast", 0, 0, [], "Arbybear"),
-    ("Tantrew", "Red Hot Chili Poppers", "East", 0, 0, ["Eashy", "Frozen", "danisk"], "Destar"),
+    ("Tantrew", "Red Hot Chili Poppers", "East", 0, 0, ["Eashy", "Frozen", "danisk"], "toasty."),
     ("Ron Hextball", "TC Jukes", "Southeast", 15, 0, [], "Ty"),
     ("JDoeMonopoly", "Pequeños Pandas", "Southeast", 15, 0, [], "Veezy"),
     ("fender", "Rollin' Golden Boulders", "West", 0, 0, [], "Iblis")
