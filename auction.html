@@ -1,6 +1,6 @@
 
 <head>
-  <title>ELTP Draft: Auction</title>
+  <title>MLTP Draft: Auction</title>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="/bootstrap.min.css">
@@ -98,6 +98,11 @@
         }
 
     </script>
+    <style>
+        .ctl-btn {
+            margin: 3px 6px;
+        }
+    </style>
 </head>
 
 <body>
@@ -213,12 +218,12 @@
                 <div class="panel panel-default">
                     <div class="panel-heading text-center">
                         <div class="btn-group">
-                            <div class="btn btn-primary resume-auction">Resume</div>
-                            <div class="btn start-auction btn-success">Start</div>
-                            <div class="btn btn-danger pause-auction">Pause</div>
-                            <div class="btn btn-primary undo-bid">Undo Bid</div>
-                            <div class="btn btn-primary undo-nomination">Undo Nomination</div>
-                            <div class="btn btn-danger renew-data">Reset Auction</div>
+                            <div class="btn btn-primary resume-auction ctl-btn">Resume</div>
+                            <div class="btn start-auction btn-success ctl-btn">Start</div>
+                            <div class="btn btn-danger pause-auction ctl-btn">Pause</div>
+                            <div class="btn btn-primary undo-bid ctl-btn">Undo Bid</div>
+                            <div class="btn btn-primary undo-nomination ctl-btn">Undo Nomination</div>
+                            <div class="btn btn-danger renew-data ctl-btn">Reset Auction</div>
                         </div>
                         <br>
                         <form class="form-group add-nomination" role="form">
