@@ -6,38 +6,22 @@ import json
 
 ## Edit these then run the script to generate the data you need
 captains = [
-    ("intercest", "Boostin Dynamo", "Northeast", 0, 0, ["Stann", "Gasol", "waterwheel", "Wavey", "ZenWhisper"]),
-    ("protag", "Ghostboosters", "Northeast", 0, 0, []),
-    ("Gem", "Someballian Pirates", "Northeast", 5, 0, []),
-    # Lowej manager
-
-    ("C Bivvey", "Whitecaps", "East", 0, 0, []),
-    ("MEX", "A Blockwork Orange", "East", 5, 0, []),
-    # Tantrew manager
-    ("aardvark", "21 Juke Street", "East", 0, 0, []),
-
-    # Ron Hextball manager
-    ("eee", "The RePublicans", "Southeast", 15, 0, []),
-    # JDoeMonopoly manager
-    ("Ball God", "Chase Jam", "Southeast", 0, 0, ["dodsfall", "Gman8181", "Ping Tut", "Neb.", "Prjct", "lukemoo"]),
-
-    ("Bamboozler", "877CAPSNOW", "West", 5, 0, []),
-    ("Warriors", "Centra of Attention", "West", 0, 0, []),
-    ("yank", "Tears", "West", 0, 0, ["BigBird", "Belle", "Curry", "glide", "Hawaii", "WhatNotToDo"]),
-    # fender manager
+    ("intercest", "Boostin Dynamo", "MLTP", 0, 10, ["Vials", "Neb.", "Sadness", "Hawaii", "laserpig"]),
+    ("BALLDON'TLIE", "ALL CAPS", "MLTP", 0, 0, []),
+    ("Eashy", "A Blockwork Orange", "MLTP", 0, 10, ["MEX", "beast mode", "Calamitous", "taco.", "poobie", "Half Mad"]),
+    ("Destar", "CreoKoalas", "MLTP", 0, 0, []),
+    ("toasty.", "Roller Bears", "MLTP", 0, 0, []),
+    ("GOOBR", "The Good Gravy Boat", "MLTP", 0, 0, [])
 ]
 
 managers = [
-    ("Lowej", "London WASDs", "Northeast", 0, 0, [], "Arbybear"),
-    ("Tantrew", "Red Hot Chili Poppers", "East", 0, 0, ["Eashy", "Frozen", "danisk"], "toasty."),
-    ("Ron Hextball", "TC Jukes", "Southeast", 15, 0, [], "Ty"),
-    ("JDoeMonopoly", "Pequeños Pandas", "Southeast", 15, 0, [], "Veezy"),
-    ("fender", "Rollin' Golden Boulders", "West", 0, 0, [], "Iblis")
+    ("fender", "The Wizard of Balls", "MLTP", 0, 0, [], "Arbybear"),
+    ("Warriors", "Centra of Attention", "MLTP", 0, 10, ["Wanye", "Frozen", "badger", "bubblez", "Blackberry", "B.I.G.money", "Raspberry", "YOUNG ZEFF"], "Daffodil")
 ]
 
 starting_money = 100
 keeper_money = 10
-team_size = 5
+team_size = 4
 
 nominations = [{"name" : "nextInOrder", "nextorder" : 0}]
 team_names = []
