@@ -20,7 +20,7 @@ managers = [
 ]
 
 starting_money = 100
-keeper_money = 10
+keeper_money = 0
 team_size = 4
 
 nominations = [{"name" : "nextInOrder", "nextorder" : 0}]
