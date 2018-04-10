@@ -7,11 +7,11 @@ import json
 ## Edit these then run the script to generate the data you need
 captains = [
     ("Tim Hortons", "Club Pinguin", "Red", 0, 0, []),
-    ("TheBob18", "Knights of Cap-a-Lot", "Red", 0, 0, []),
-    ("BallAnka", "Pi-Curious", "Red", 0, 0, []),
+    ("TheBob18", "Knights of Cap-a-Lot", "Red", 10, 0, []),
+    ("BallAnka", "Pi-Curious", "Red", 10, 0, []),
     ("Bubblez", "Trailer Park Balls", "Red", 0, 0, []),
-    ("Ajax", "Ball or Nothing", "Blue", 0, 0, []),
-    ("Catalyst", "Degrees of Freedom", "Blue", 0, 0, []),
+    ("Ajax", "Ball or Nothing", "Blue", 10, 0, []),
+    ("Catalyst", "Degrees of Freedom", "Blue", 10, 0, []),
     ("yiss", "St. Ball Saints", "Blue", 0, 0, []),
     ("#SelfySentax", "Stranger Pings", "Blue", 0, 0, []),
     ("PK SMURFBALL", "Weed the People", "Blue", 0, 0, []),
@@ -22,7 +22,7 @@ managers = [
     ("NameLEss", "Master Boaters", "Red", 0, 0, [], "waterwheel"),
     ("protag", "qakboosters", "Red", 0, 0, [], "TagProfessor"),
     ("BALLDON'TLIE", "SMALL CAPS", "Red", 0, 0, [], "veezy"),
-    ("GOOBR", "Jungle Jukes", "Red", 0, 0, [], "YUNG ZEFF"),
+    ("GOOBR", "Jungle Jukes", "Red", 10, 0, [], "YUNG ZEFF"),
     ("MEX", "Big Gay Balls", "Blue", 0, 0, [], "RuBall"),
     ("Bright", "Bubble Balls", "Blue", 0, 0, [], "El Sacko")
 ]
