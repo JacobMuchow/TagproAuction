@@ -13,7 +13,7 @@ captains = [
     ("Ajax", "Ball or Nothing", "Blue", 10, 0, []),
     ("Catalyst", "Degrees of Freedom", "Blue", 10, 0, []),
     ("yiss", "St. Ball Saints", "Blue", 0, 0, []),
-    ("#SelfySentax", "Stranger Pings", "Blue", 0, 0, []),
+    ("#SelfySyntax", "Stranger Pings", "Blue", 0, 0, []),
     ("PK SMURFBALL", "Weed the People", "Blue", 0, 0, []),
     ("Mufro", "TBD", "Blue", 0, 0, [])
 ]
