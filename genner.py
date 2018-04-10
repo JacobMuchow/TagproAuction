@@ -6,22 +6,30 @@ import json
 
 ## Edit these then run the script to generate the data you need
 captains = [
-    ("intercest", "Boostin Dynamo", "MLTP", 0, 10, ["Vials", "Neb.", "Sadness", "Hawaii", "laserpig"]),
-    ("BALLDON'TLIE", "ALL CAPS", "MLTP", 0, 0, []),
-    ("Eashy", "A Blockwork Orange", "MLTP", 0, 10, ["MEX", "beast mode", "Calamitous", "taco.", "poobie", "Half Mad"]),
-    ("Destar", "CreoKoalas", "MLTP", 0, 0, []),
-    ("toasty.", "Roller Bears", "MLTP", 0, 0, []),
-    ("GOOBR", "The Good Gravy Boat", "MLTP", 0, 0, [])
+    ("Tim Hortons", "Club Pinguin", "Red", 0, 0, []),
+    ("TheBob18", "Knights of Cap-a-Lot", "Red", 0, 0, []),
+    ("BallAnka", "Pi-Curious", "Red", 0, 0, []),
+    ("Bubblez", "Trailer Park Balls", "Red", 0, 0, []),
+    ("Ajax", "Ball or Nothing", "Blue", 0, 0, []),
+    ("Catalyst", "Degrees of Freedom", "Blue", 0, 0, []),
+    ("yiss", "St. Ball Saints", "Blue", 0, 0, []),
+    ("#SelfySentax", "Stranger Pings", "Blue", 0, 0, []),
+    ("PK SMURFBALL", "Weed the People", "Blue", 0, 0, []),
+    ("Mufro", "TBD", "Blue", 0, 0, [])
 ]
 
 managers = [
-    ("fender", "The Wizard of Balls", "MLTP", 0, 0, [], "Arbybear"),
-    ("Warriors", "Centra of Attention", "MLTP", 0, 10, ["Wanye", "Frozen", "badger", "bubblez", "Blackberry", "B.I.G.money", "Raspberry", "YOUNG ZEFF"], "Daffodil")
+    ("NameLEss", "Master Boaters", "Red", 0, 0, [], "waterwheel"),
+    ("protag", "qakboosters", "Red", 0, 0, [], "TagProfessor"),
+    ("BALLDON'TLIE", "SMALL CAPS", "Red", 0, 0, [], "veezy"),
+    ("GOOBR", "Jungle Jukes", "Red", 0, 0, [], "YUNG ZEFF"),
+    ("MEX", "Big Gay Balls", "Blue", 0, 0, [], "RuBall"),
+    ("Bright", "Bubble Balls", "Blue", 0, 0, [], "El Sacko")
 ]
 
 starting_money = 100
 keeper_money = 0
-team_size = 4
+team_size = 6
 
 nominations = [{"name" : "nextInOrder", "nextorder" : 0}]
 team_names = []

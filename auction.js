@@ -28,7 +28,7 @@ var bidTimeout = 0;
 var minimumBid = 0;
 var maximumBid = 100;
 var maxNominations = 400;
-var numberOfNominators = 8;
+var numberOfNominators = 16;
 var auctionExpiryDate = 0; // a lower bound on the auction expiry date
 var maxKeeperMoneyOnOneBid = 5;
 
