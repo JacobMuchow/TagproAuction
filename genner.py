@@ -5,31 +5,29 @@ import json
 
 
 ## Edit these then run the script to generate the data you need
+# Captain, Team Name, Division, Additional Money, Keeper Money, List of Keepers
 captains = [
-    ("Tim Hortons", "Club Pinguin", "Red", 0, 0, []),
-    ("TheBob18", "Knights of Cap-a-Lot", "Red", 10, 0, []),
-    ("BallAnka", "Pi-Curious", "Red", 10, 0, []),
-    ("Bubblez", "Trailer Park Balls", "Red", 0, 0, []),
-    ("Ajax", "Ball or Nothing", "Blue", 10, 0, []),
-    ("Catalyst", "Degrees of Freedom", "Blue", 10, 0, []),
-    ("yiss", "St. Ball Saints", "Blue", 0, 0, []),
-    ("#SelfySyntax", "Stranger Pings", "Blue", 0, 0, []),
-    ("PK SMURFBALL", "Weed the People", "Blue", 0, 0, []),
-    ("Mufro", "TBD", "Blue", 0, 0, [])
+    ("BALLDON'TLIE", "ALL CAPS", "MLTP", 9, 0, []),
+    ("Suchit", "Ball'easters", "MLTP", 75, 0, []),
+    ("Bal McCartny", "Balls on Parade", "MLTP", 33, 0, []),
+    ("Destar", "CreoKoalas", "MLTP", 36, 0, []),
+    ("Abe Lincoln", "Holy Rollers", "MLTP", 7, 0, []),
+    ("CB13", "Mickey Mouse Poperation", "MLTP", 22, 0, []),
+    ("waterwheel", "Chennai Super Pings", "MLTP", 56, 0, []),
+    ("Nice Person", "Red Hot Chili Poppers", "MLTP", 8, 0, []),
+    ("bright", "The Holy Seehawks", "MLTP", 5, 0, [])
 ]
 
+# Captain, Team Name, Division, Additional Money, Keeper Money, List of Keepers, NPC Pick
 managers = [
-    ("NameLEss", "Master Boaters", "Red", 0, 0, [], "waterwheel"),
-    ("protag", "qakboosters", "Red", 0, 0, [], "TagProfessor"),
-    ("BALLDON'TLIE", "SMALL CAPS", "Red", 0, 0, [], "veezy"),
-    ("GOOBR", "Jungle Jukes", "Red", 10, 0, [], "YUNG ZEFF"),
-    ("MEX", "Big Gay Balls", "Blue", 0, 0, [], "RuBall"),
-    ("Bright", "Bubble Balls", "Blue", 0, 0, [], "El Sacko")
+    ("Ron Hextball", "TC Jukes", "MLTP", 27, 0, [], "Ty"),
+    ("pk", "United Pingdom", "MLTP", 72, 0, [], "#SelfySyntax"),
+    ("Poeticalto", "Centra of Attention", "MLTP", 0, 0, [], "Warriors")
 ]
 
 starting_money = 100
 keeper_money = 0
-team_size = 6
+team_size = 5
 
 nominations = [{"name" : "nextInOrder", "nextorder" : 0}]
 team_names = []
