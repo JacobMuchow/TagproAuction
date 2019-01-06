@@ -26,6 +26,32 @@ My deployment recommendation is to create a new droplet on DigitalOcean, ssh int
 
     Remove the last comma and put brackets on either end to make it an array.
 
+## Live Editing
+
+Sometimes, you may need to pause the auction and live edit the data in mongo. Ex) A trade or Ball God >:/
+
+Edit in CLT:
+
+```
+meteor mongo --allow-superuser
+```
+
+Connect remotely with GUI (a lot easier):
+
+```
+1. I recommend installing the free version of Robo 3T
+2. Create a connection with SSH tunneling using your SSH credentials.
+3. Under the connection tab, use 127.0.0.1 for the IP and 81 for the port.
+```
+
+### Database Tips
+
+Each document in `teams` relates one player to a team name, so each team will have X number of documents corresponding to their team, where X is the number of roster spots shown in the draft (so 4-5 usually).
+
+A teams current amount of money is stored in `teamnames`.
+
+To exact trades, you should update `teams` to reflect the roster moves & new player cost and `teamnames` to update team money if needed.
+
 ## Other Notes
 
 Captain names are case sensitive - when signing up you need to use the correct capitalization.
