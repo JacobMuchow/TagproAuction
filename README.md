@@ -1,32 +1,31 @@
 TagproAuction
 =============
 
-Tagpro Auction tool for MLTP S7. Possibly usable in other situations.
+Tagpro Auction tool for MLTP.
 
-To set up and run this site just git clone it, navigate to the project directory and execute:
+To run this project on a server, run these commands:
 
-> curl https://install.meteor.com/ | sh
+```
+curl https://install.meteor.com/ | sh
 
-> meteor
+meteor --allow-superuser -p 80
+```
 
-To work in other situations, modify "genner.py" to include the captains, team names, and division of each team.
-After you modify it, run "python genner.py" and it will update the correct files.
+My deployment recommendation is to create a new droplet on DigitalOcean, ssh into it, clone the repo, then run the above commands inside the repo.
 
-You also need to alter the first line on "auction.js" to include the list of admins - people who can start/pause/undo bids on the auction. 
+## Auction Setup
 
-Run "meteor" in the project's main directory, then load up localhost:3000 to see the auction.
+1. Modify `genner.py` to include the team information for the draft.
+2. Run `python genner.py` and it will update the correct files.
+3. Edit the first line in `auction.js` to include the list of admins - people who can start/pause/undo bids on the auction.
+4. Update `player_response.json` with names of the players who are eligible for the draft. The easiest way to do this is copy all of the names from a spreadsheet, paste, then use find & replace with Regex to turn it into a valid JSON array.
 
-You can do "meteor deploy myauctionsite.meteorapp.com" to create a live site that others can access.
+    Find: `$1`
+
+    Replace: `    {\n        "tagpro": "$1"\n    },`
+
+    Remove the last comma and put brackets on either end to make it an array.
+
+## Other Notes
 
 Captain names are case sensitive - when signing up you need to use the correct capitalization.
-
-When we used it for the MLTP auction, we created a heroku site, and used mongolab as the database. This allows persistence and backing up, as well as on the fly modifications to the database (removing users who forgot logins, removing players that were accidentally added).
-
-The heroku config variables used are as follows:
-
-	=== mltp-auction Config Vars
-	BUILDPACK_URL: https://github.com/AdmitHub/meteor-buildpack-horse.git
-	MONGO_URL:     mongodb://<username>:<password>@<mongolabhost>.mongolab.com:<mongolab-port>/<mongolab-database>
-	ROOT_URL:      http://<app-name>.herokuapp.com
-
-To use Mongolab, you need to verify your payment information on Heroku. You just need to enter a credit card (they won't charge you).
