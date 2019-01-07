@@ -8,21 +8,21 @@ import json
 # Captain, Team Name, Division, Additional Money, Keeper Money, List of Keepers
 captains = [
     ("BALLDON'TLIE", "ALL CAPS", "MLTP", 9, 0, []),
-    ("Suchit", "Ball'easters", "MLTP", 75, 0, []),
+    ("Suchit", "Soviet Ballers", "MLTP", 75, 0, []),
     ("Bal McCartny", "Balls on Parade", "MLTP", 33, 0, []),
     ("Destar", "CreoKoalas", "MLTP", 36, 0, []),
     ("Abe Lincoln", "Holy Rollers", "MLTP", 7, 0, []),
     ("CB13", "Mickey Mouse Poperation", "MLTP", 22, 0, []),
     ("waterwheel", "Chennai Super Pings", "MLTP", 56, 0, []),
     ("Nice Person", "Red Hot Chili Poppers", "MLTP", 8, 0, []),
-    ("bright", "The Holy Seehawks", "MLTP", 5, 0, [])
+    ("bright", "The Holy Seehawks", "MLTP", 5, 0, []),
+    ("Warriors", "Centra of Attention", "MLTP", 0, 0, [])
 ]
 
 # Captain, Team Name, Division, Additional Money, Keeper Money, List of Keepers, NPC Pick
 managers = [
     ("Ron Hextball", "TC Jukes", "MLTP", 27, 0, [], "Ty"),
-    ("pk", "United Pingdom", "MLTP", 72, 0, [], "#SelfySyntax"),
-    ("Poeticalto", "Centra of Attention", "MLTP", 0, 0, [], "Warriors")
+    ("pk", "United Pingdom", "MLTP", 72, 0, [], "#SelfySyntax")
 ]
 
 starting_money = 100
